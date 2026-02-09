@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Block Unite - Merge puzzle game combining 2048 and block mechanics">
+    <title>Block Unite - Merge Puzzle Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1A1625 0%, #2D2640 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 3em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #7C3AED, #9F67FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.5em;
+            color: #9B94AA;
+            margin-bottom: 30px;
+        }
+
+        .download-badge {
+            display: inline-block;
+            background: white;
+            padding: 12px 30px;
+            border-radius: 10px;
+            color: #7C3AED;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+
+        .download-badge:hover {
+            transform: translateY(-2px);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .feature-card h3 {
+            color: #9F67FF;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #9B94AA;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 60px;
+        }
+
+        footer a {
+            color: #9F67FF;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            color: white;
+        }
+
+        .section h2 {
+            color: #9F67FF;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2em;
+            }
+
+            .tagline {
+                font-size: 1.2em;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🎮 Block Unite</div>
+            <p class="tagline">Merge Puzzle Adventure</p>
+            <p style="color: #9B94AA; max-width: 600px; margin: 20px auto;">
+                Combine the addictive gameplay of 2048 with strategic block placement.
+                Merge, match, and master the ultimate puzzle challenge!
+            </p>
+            <div style="margin-top: 30px;">
+                <a href="#" class="download-badge">📱 Download on App Store</a>
+                <a href="#" class="download-badge">🤖 Get it on Google Play</a>
+            </div>
+        </header>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🧩</div>
+                <h3>Strategic Gameplay</h3>
+                <p>Drag, drop, and merge numbered blocks. Plan your moves carefully to reach 2048 and beyond!</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>Global Leaderboard</h3>
+                <p>Compete with players worldwide. Climb the ranks and prove you're the ultimate Block Unite champion!</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Daily Challenges</h3>
+                <p>Complete daily missions, unlock achievements, and earn rewards. New challenges every day!</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💎</div>
+                <h3>Collect Gems</h3>
+                <p>Earn gems as you play and use them to continue challenging games. Track your progress!</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Beautiful Design</h3>
+                <p>Colorful blocks with smooth animations. A relaxing and satisfying puzzle experience!</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📴</div>
+                <h3>Play Offline</h3>
+                <p>No internet required for gameplay. Play anytime, anywhere at your own pace!</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>How to Play</h2>
+            <ol style="line-height: 2; padding-left: 20px;">
+                <li>Drag numbered blocks from the selection area onto the 8x8 grid</li>
+                <li>Match three or more identical blocks together to merge them</li>
+                <li>Create higher-value blocks and reach your goal</li>
+                <li>Plan strategically - every placement counts!</li>
+                <li>Clear space by creating smart merges</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>Why Block Unite?</h2>
+            <p style="margin-bottom: 15px;">
+                Whether you're a fan of 2048, Tetris, or classic block puzzle games,
+                Block Unite offers a fresh and engaging experience that's easy to learn but hard to master.
+            </p>
+            <p>
+                ✨ Free to download and play<br>
+                ✨ No time pressure - relax and enjoy<br>
+                ✨ Perfect for puzzle lovers of all ages<br>
+                ✨ Regular updates with new features
+            </p>
+        </div>
+
+        <footer>
+            <p style="margin-bottom: 20px;">
+                <a href="support.html">Support</a> |
+                <a href="privacy.html">Privacy Policy</a> |
+                <a href="terms.html">Terms of Use</a>
+            </p>
+            <p>&copy; 2025 Block Unite. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                Contact: <a href="mailto:aykuterd@gmail.com">aykuterd@gmail.com</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
