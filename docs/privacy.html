@@ -1,220 +1,232 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Block Unite</title>
+    <link rel="icon" href="images/icon.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1A1625 0%, #2D2640 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .back-link {
-            color: #9F67FF;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .content {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        h1 {
-            color: #9F67FF;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
-
-        h2 {
-            color: #9F67FF;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .date {
-            color: #9B94AA;
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-
-        p {
-            margin-bottom: 15px;
-        }
-
-        ul {
-            margin: 15px 0 15px 30px;
-        }
-
-        li {
-            margin: 10px 0;
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 2em;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --purple: #7C3AED; --purple-light: #9F67FF; --bg-dark: #1A1625; --bg-mid: #2D2640; --text-muted: #9B94AA; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; color: #333; background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-mid) 100%); min-height: 100vh; }
+        nav { background: rgba(26,22,37,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 12px 24px; }
+        .nav-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-weight: 800; font-size: 1.1em; color: var(--purple-light); text-decoration: none; }
+        .lang-toggle { display: flex; gap: 4px; background: rgba(255,255,255,0.08); padding: 4px; border-radius: 10px; }
+        .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 6px 16px; border-radius: 7px; cursor: pointer; font-size: 0.85em; font-weight: 700; transition: all 0.2s; }
+        .lang-btn.active { background: var(--purple); color: white; }
+        .container { max-width: 840px; margin: 0 auto; padding: 50px 20px; }
+        .content { background: rgba(255,255,255,0.07); backdrop-filter: blur(10px); padding: 48px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.12); color: white; }
+        h1 { color: var(--purple-light); margin-bottom: 8px; font-size: 2.2em; }
+        h2 { color: var(--purple-light); margin-top: 32px; margin-bottom: 12px; font-size: 1.2em; }
+        h3 { color: rgba(255,255,255,0.85); margin-top: 18px; margin-bottom: 8px; font-size: 1em; }
+        .date { color: var(--text-muted); font-style: italic; margin-bottom: 28px; font-size: 0.9em; }
+        p { margin-bottom: 14px; color: rgba(255,255,255,0.75); font-size: 0.95em; }
+        ul { margin: 10px 0 14px 24px; }
+        li { margin: 8px 0; color: rgba(255,255,255,0.75); font-size: 0.95em; }
+        a { color: var(--purple-light); }
+        .footer-nav { margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .footer-nav a { color: var(--purple-light); text-decoration: none; font-size: 0.9em; }
+        .footer-nav a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .content { padding: 24px; } h1 { font-size: 1.7em; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <a href="index.html" class="back-link">← Back to Home</a>
-        </div>
-
-        <div class="content">
-            <h1>🔒 Privacy Policy</h1>
-            <p class="date">Effective Date: January 7, 2026</p>
-
-            <p>
-                This Privacy Policy describes how Block Unite ("we", "our", or "us") collects,
-                uses, and shares information when you use our mobile application.
-            </p>
-
-            <h2>1. Information We Collect</h2>
-
-            <h3>1.1 Information You Provide</h3>
-            <ul>
-                <li><strong>Account Information:</strong> We collect your email address and password (encrypted) for account creation, authentication, and password recovery.</li>
-                <li><strong>Username/Nickname:</strong> When you choose to appear on the leaderboard, you can provide a display name.</li>
-                <li><strong>Gameplay Data:</strong> We collect your game scores, achievements, and progress to enable game features and leaderboards.</li>
-            </ul>
-
-            <h3>1.2 Automatically Collected Information</h3>
-            <ul>
-                <li><strong>User ID:</strong> We automatically generate a unique identifier for your game profile stored in our database.</li>
-                <li><strong>Device Information:</strong> Basic device information may be collected for app functionality and analytics.</li>
-            </ul>
-
-            <h2>2. How We Use Your Information</h2>
-
-            <p>We use the collected information for the following purposes:</p>
-            <ul>
-                <li><strong>App Functionality:</strong> To provide core game features including leaderboards, achievements, and game progress tracking.</li>
-                <li><strong>Analytics:</strong> To understand how players interact with the game and improve the user experience.</li>
-                <li><strong>Support:</strong> To respond to your questions and provide customer support.</li>
-            </ul>
-
-            <h2>3. Information Sharing</h2>
-
-            <p>We do not sell your personal information. We may share information in the following circumstances:</p>
-            <ul>
-                <li><strong>Public Leaderboards:</strong> Your chosen nickname and score are displayed publicly on the global leaderboard.</li>
-                <li><strong>Service Providers:</strong> We use Firebase (Google) to store game data and manage leaderboards. Firebase's privacy policy applies to data stored on their servers.</li>
-                <li><strong>Legal Requirements:</strong> We may disclose information if required by law or to protect our rights.</li>
-            </ul>
-
-            <h2>4. Third-Party Services</h2>
-
-            <p>Block Unite uses the following third-party services:</p>
-            <ul>
-                <li><strong>Firebase (Google):</strong> For cloud storage of leaderboard data and user IDs.
-                    <a href="https://firebase.google.com/support/privacy" style="color: #9F67FF;">Firebase Privacy Policy</a>
-                </li>
-                <li><strong>Google AdMob (future):</strong> For displaying advertisements. When ads are implemented,
-                    you will be asked for consent to personalized advertising per iOS App Tracking Transparency requirements.</li>
-            </ul>
-
-            <h2>5. Data Retention</h2>
-
-            <p>
-                We retain your game data (scores, achievements, nickname) for as long as necessary to provide
-                the leaderboard and game features. You can request deletion of your data by contacting us.
-            </p>
-
-            <h2>6. Children's Privacy</h2>
-
-            <p>
-                Block Unite is not directed to children under 13. We do not knowingly collect personal
-                information from children under 13. If you believe we have collected information from
-                a child under 13, please contact us to have it removed.
-            </p>
-
-            <h2>7. Your Rights</h2>
-
-            <p>You have the right to:</p>
-            <ul>
-                <li>Access the personal information we hold about you</li>
-                <li>Request correction of inaccurate information</li>
-                <li>Request deletion of your personal information</li>
-                <li>Opt out of personalized advertising (when ads are implemented)</li>
-            </ul>
-
-            <p>To exercise these rights, please contact us at:
-                <a href="mailto:aykuterd@gmail.com" style="color: #9F67FF;">aykuterd@gmail.com</a>
-            </p>
-
-            <h2>8. Data Security</h2>
-
-            <p>
-                We implement appropriate technical and organizational measures to protect your information.
-                However, no method of transmission over the internet is 100% secure, and we cannot guarantee
-                absolute security.
-            </p>
-
-            <h2>9. International Data Transfers</h2>
-
-            <p>
-                Your information may be transferred to and stored on servers located outside your country.
-                By using Block Unite, you consent to such transfers.
-            </p>
-
-            <h2>10. Changes to This Privacy Policy</h2>
-
-            <p>
-                We may update this Privacy Policy from time to time. We will notify you of any changes
-                by posting the new Privacy Policy in the app and updating the "Effective Date" above.
-            </p>
-
-            <h2>11. Contact Us</h2>
-
-            <p>If you have questions about this Privacy Policy, please contact us:</p>
-            <p style="margin-left: 30px;">
-                Email: <a href="mailto:aykuterd@gmail.com" style="color: #9F67FF;">aykuterd@gmail.com</a><br>
-                App: Block Unite<br>
-                Developer: Aykut Erdoğdu
-            </p>
-
-            <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
-                <a href="index.html" class="back-link">← Back to Home</a> |
-                <a href="support.html" class="back-link">Support</a> |
-                <a href="terms.html" class="back-link">Terms of Use</a>
-            </div>
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">🎮 Block Unite</a>
+        <div class="lang-toggle">
+            <button onclick="setLanguage('en')" id="btn-en" class="lang-btn active">EN</button>
+            <button onclick="setLanguage('tr')" id="btn-tr" class="lang-btn">TR</button>
         </div>
     </div>
+</nav>
+
+<div class="container">
+    <div class="content">
+        <h1>🔒 <span data-i18n="title">Privacy Policy</span></h1>
+        <p class="date" data-i18n="date">Effective Date: January 7, 2026</p>
+
+        <p data-i18n="intro">This Privacy Policy describes how Block Unite ("we", "our", or "us") collects, uses, and shares information when you use our mobile application.</p>
+
+        <h2 data-i18n="h1">1. Information We Collect</h2>
+        <h3 data-i18n="h1a">1.1 Information You Provide</h3>
+        <ul>
+            <li data-i18n="li1a"><strong>Account Information:</strong> We collect your email address and password (encrypted) for account creation, authentication, and password recovery.</li>
+            <li data-i18n="li1b"><strong>Username/Nickname:</strong> When you choose to appear on the leaderboard, you can provide a display name.</li>
+            <li data-i18n="li1c"><strong>Gameplay Data:</strong> We collect your game scores, achievements, and progress to enable game features and leaderboards.</li>
+        </ul>
+        <h3 data-i18n="h1b">1.2 Automatically Collected Information</h3>
+        <ul>
+            <li data-i18n="li1d"><strong>User ID:</strong> We automatically generate a unique identifier for your game profile stored in our database.</li>
+            <li data-i18n="li1e"><strong>Device Information:</strong> Basic device information may be collected for app functionality and analytics.</li>
+        </ul>
+
+        <h2 data-i18n="h2">2. How We Use Your Information</h2>
+        <p data-i18n="p2">We use the collected information for the following purposes:</p>
+        <ul>
+            <li data-i18n="li2a"><strong>App Functionality:</strong> To provide core game features including leaderboards, achievements, and game progress tracking.</li>
+            <li data-i18n="li2b"><strong>Analytics:</strong> To understand how players interact with the game and improve the user experience.</li>
+            <li data-i18n="li2c"><strong>Support:</strong> To respond to your questions and provide customer support.</li>
+        </ul>
+
+        <h2 data-i18n="h3">3. Information Sharing</h2>
+        <p data-i18n="p3">We do not sell your personal information. We may share information in the following circumstances:</p>
+        <ul>
+            <li data-i18n="li3a"><strong>Public Leaderboards:</strong> Your chosen nickname and score are displayed publicly on the global leaderboard.</li>
+            <li data-i18n="li3b"><strong>Service Providers:</strong> We use Firebase (Google) to store game data and manage leaderboards. Firebase's privacy policy applies to data stored on their servers.</li>
+            <li data-i18n="li3c"><strong>Legal Requirements:</strong> We may disclose information if required by law or to protect our rights.</li>
+        </ul>
+
+        <h2 data-i18n="h4">4. Third-Party Services</h2>
+        <p data-i18n="p4">Block Unite uses the following third-party services:</p>
+        <ul>
+            <li data-i18n="li4a"><strong>Firebase (Google):</strong> For cloud storage of leaderboard data and user IDs. <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a></li>
+            <li data-i18n="li4b"><strong>Google AdMob (future):</strong> For displaying advertisements. When ads are implemented, you will be asked for consent to personalized advertising per iOS App Tracking Transparency requirements.</li>
+        </ul>
+
+        <h2 data-i18n="h5">5. Data Retention</h2>
+        <p data-i18n="p5">We retain your game data (scores, achievements, nickname) for as long as necessary to provide the leaderboard and game features. You can request deletion of your data by contacting us.</p>
+
+        <h2 data-i18n="h6">6. Children's Privacy</h2>
+        <p data-i18n="p6">Block Unite is not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe we have collected information from a child under 13, please contact us to have it removed.</p>
+
+        <h2 data-i18n="h7">7. Your Rights</h2>
+        <p data-i18n="p7">You have the right to:</p>
+        <ul>
+            <li data-i18n="li7a">Access the personal information we hold about you</li>
+            <li data-i18n="li7b">Request correction of inaccurate information</li>
+            <li data-i18n="li7c">Request deletion of your personal information</li>
+            <li data-i18n="li7d">Opt out of personalized advertising (when ads are implemented)</li>
+        </ul>
+        <p data-i18n="p7b">To exercise these rights, please contact us at: <a href="mailto:aykuterd@gmail.com">aykuterd@gmail.com</a></p>
+
+        <h2 data-i18n="h8">8. Data Security</h2>
+        <p data-i18n="p8">We implement appropriate technical and organizational measures to protect your information. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
+
+        <h2 data-i18n="h9">9. International Data Transfers</h2>
+        <p data-i18n="p9">Your information may be transferred to and stored on servers located outside your country. By using Block Unite, you consent to such transfers.</p>
+
+        <h2 data-i18n="h10">10. Changes to This Privacy Policy</h2>
+        <p data-i18n="p10">We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy in the app and updating the "Effective Date" above.</p>
+
+        <h2 data-i18n="h11">11. Contact Us</h2>
+        <p data-i18n="p11">If you have questions about this Privacy Policy, please contact us:</p>
+        <p style="margin-left:16px;">Email: <a href="mailto:aykuterd@gmail.com">aykuterd@gmail.com</a><br>App: Block Unite<br>Developer: Aykut Erdoğdu</p>
+
+        <div class="footer-nav">
+            <a href="index.html" data-i18n="navHome">← Home</a>
+            <a href="support.html" data-i18n="navSupport">Support</a>
+            <a href="terms.html" data-i18n="navTerms">Terms of Use</a>
+        </div>
+    </div>
+</div>
+
+<script>
+const t = {
+    en: {
+        title: "Privacy Policy",
+        date: "Effective Date: January 7, 2026",
+        intro: "This Privacy Policy describes how Block Unite (\"we\", \"our\", or \"us\") collects, uses, and shares information when you use our mobile application.",
+        h1: "1. Information We Collect", h1a: "1.1 Information You Provide", h1b: "1.2 Automatically Collected Information",
+        li1a: "<strong>Account Information:</strong> We collect your email address and password (encrypted) for account creation, authentication, and password recovery.",
+        li1b: "<strong>Username/Nickname:</strong> When you choose to appear on the leaderboard, you can provide a display name.",
+        li1c: "<strong>Gameplay Data:</strong> We collect your game scores, achievements, and progress to enable game features and leaderboards.",
+        li1d: "<strong>User ID:</strong> We automatically generate a unique identifier for your game profile stored in our database.",
+        li1e: "<strong>Device Information:</strong> Basic device information may be collected for app functionality and analytics.",
+        h2: "2. How We Use Your Information",
+        p2: "We use the collected information for the following purposes:",
+        li2a: "<strong>App Functionality:</strong> To provide core game features including leaderboards, achievements, and game progress tracking.",
+        li2b: "<strong>Analytics:</strong> To understand how players interact with the game and improve the user experience.",
+        li2c: "<strong>Support:</strong> To respond to your questions and provide customer support.",
+        h3: "3. Information Sharing",
+        p3: "We do not sell your personal information. We may share information in the following circumstances:",
+        li3a: "<strong>Public Leaderboards:</strong> Your chosen nickname and score are displayed publicly on the global leaderboard.",
+        li3b: "<strong>Service Providers:</strong> We use Firebase (Google) to store game data and manage leaderboards. Firebase's privacy policy applies to data stored on their servers.",
+        li3c: "<strong>Legal Requirements:</strong> We may disclose information if required by law or to protect our rights.",
+        h4: "4. Third-Party Services",
+        p4: "Block Unite uses the following third-party services:",
+        li4a: "<strong>Firebase (Google):</strong> For cloud storage of leaderboard data and user IDs. <a href=\"https://firebase.google.com/support/privacy\">Firebase Privacy Policy</a>",
+        li4b: "<strong>Google AdMob (future):</strong> For displaying advertisements. When ads are implemented, you will be asked for consent to personalized advertising per iOS App Tracking Transparency requirements.",
+        h5: "5. Data Retention",
+        p5: "We retain your game data (scores, achievements, nickname) for as long as necessary to provide the leaderboard and game features. You can request deletion of your data by contacting us.",
+        h6: "6. Children's Privacy",
+        p6: "Block Unite is not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe we have collected information from a child under 13, please contact us to have it removed.",
+        h7: "7. Your Rights", p7: "You have the right to:",
+        li7a: "Access the personal information we hold about you",
+        li7b: "Request correction of inaccurate information",
+        li7c: "Request deletion of your personal information",
+        li7d: "Opt out of personalized advertising (when ads are implemented)",
+        p7b: "To exercise these rights, please contact us at: <a href=\"mailto:aykuterd@gmail.com\">aykuterd@gmail.com</a>",
+        h8: "8. Data Security",
+        p8: "We implement appropriate technical and organizational measures to protect your information. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.",
+        h9: "9. International Data Transfers",
+        p9: "Your information may be transferred to and stored on servers located outside your country. By using Block Unite, you consent to such transfers.",
+        h10: "10. Changes to This Privacy Policy",
+        p10: "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy in the app and updating the \"Effective Date\" above.",
+        h11: "11. Contact Us",
+        p11: "If you have questions about this Privacy Policy, please contact us:",
+        navHome: "← Home", navSupport: "Support", navTerms: "Terms of Use"
+    },
+    tr: {
+        title: "Gizlilik Politikası",
+        date: "Yürürlük Tarihi: 7 Ocak 2026",
+        intro: "Bu Gizlilik Politikası, Block Unite'ın (\"biz\", \"bizim\") mobil uygulamamızı kullandığınızda bilgileri nasıl topladığını, kullandığını ve paylaştığını açıklar.",
+        h1: "1. Topladığımız Bilgiler", h1a: "1.1 Sağladığınız Bilgiler", h1b: "1.2 Otomatik Olarak Toplanan Bilgiler",
+        li1a: "<strong>Hesap Bilgileri:</strong> Hesap oluşturma, kimlik doğrulama ve şifre kurtarma için e-posta adresinizi ve şifrenizi (şifreli) toplarız.",
+        li1b: "<strong>Kullanıcı Adı/Takma Ad:</strong> Sıralama tablosunda görünmeyi seçtiğinizde bir görünen ad sağlayabilirsiniz.",
+        li1c: "<strong>Oyun Verileri:</strong> Oyun özelliklerini ve sıralama tablolarını etkinleştirmek için oyun puanlarınızı, başarımlarınızı ve ilerlemenizi toplarız.",
+        li1d: "<strong>Kullanıcı Kimliği:</strong> Veritabanımızda saklanan oyun profiliniz için otomatik olarak benzersiz bir tanımlayıcı oluştururuz.",
+        li1e: "<strong>Cihaz Bilgileri:</strong> Uygulama işlevselliği ve analitik için temel cihaz bilgileri toplanabilir.",
+        h2: "2. Bilgilerinizi Nasıl Kullanıyoruz",
+        p2: "Toplanan bilgileri aşağıdaki amaçlar için kullanırız:",
+        li2a: "<strong>Uygulama İşlevselliği:</strong> Sıralama tabloları, başarımlar ve oyun ilerleme takibi dahil temel oyun özelliklerini sağlamak için.",
+        li2b: "<strong>Analitik:</strong> Oyuncuların oyunla nasıl etkileşime girdiğini anlamak ve kullanıcı deneyimini geliştirmek için.",
+        li2c: "<strong>Destek:</strong> Sorularınızı yanıtlamak ve müşteri desteği sağlamak için.",
+        h3: "3. Bilgi Paylaşımı",
+        p3: "Kişisel bilgilerinizi satmıyoruz. Aşağıdaki durumlarda bilgi paylaşabiliriz:",
+        li3a: "<strong>Herkese Açık Sıralama Tabloları:</strong> Seçtiğiniz takma ad ve puanınız global sıralama tablosunda herkese açık olarak görüntülenir.",
+        li3b: "<strong>Hizmet Sağlayıcılar:</strong> Oyun verilerini depolamak ve sıralama tablolarını yönetmek için Firebase (Google) kullanıyoruz. Firebase'in gizlilik politikası sunucularında saklanan veriler için geçerlidir.",
+        li3c: "<strong>Yasal Gereklilikler:</strong> Yasal olarak gerekli olması veya haklarımızı korumak için bilgileri açıklayabiliriz.",
+        h4: "4. Üçüncü Taraf Hizmetler",
+        p4: "Block Unite aşağıdaki üçüncü taraf hizmetleri kullanır:",
+        li4a: "<strong>Firebase (Google):</strong> Sıralama tablosu verileri ve kullanıcı kimliklerinin bulut depolaması için. <a href=\"https://firebase.google.com/support/privacy\">Firebase Gizlilik Politikası</a>",
+        li4b: "<strong>Google AdMob (gelecek):</strong> Reklamları görüntülemek için. Reklamlar uygulandığında, iOS Uygulama İzleme Şeffaflığı gereksinimlerine göre kişiselleştirilmiş reklamcılık için onayınız istenecektir.",
+        h5: "5. Veri Saklama",
+        p5: "Oyun verilerinizi (puanlar, başarımlar, takma ad) sıralama tablosu ve oyun özelliklerini sağlamak için gerektiği kadar saklarız. Verilerinizin silinmesini bize ulaşarak talep edebilirsiniz.",
+        h6: "6. Çocukların Gizliliği",
+        p6: "Block Unite, 13 yaşın altındaki çocuklara yönelik değildir. 13 yaşın altındaki çocuklardan bilerek kişisel bilgi toplamıyoruz. 13 yaşın altındaki bir çocuktan bilgi topladığımıza inanıyorsanız, lütfen kaldırılması için bize ulaşın.",
+        h7: "7. Haklarınız", p7: "Aşağıdaki haklara sahipsiniz:",
+        li7a: "Hakkınızda tuttuğumuz kişisel bilgilere erişim",
+        li7b: "Hatalı bilgilerin düzeltilmesini talep etme",
+        li7c: "Kişisel bilgilerinizin silinmesini talep etme",
+        li7d: "Kişiselleştirilmiş reklamcılıktan vazgeçme (reklamlar uygulandığında)",
+        p7b: "Bu hakları kullanmak için lütfen bize ulaşın: <a href=\"mailto:aykuterd@gmail.com\">aykuterd@gmail.com</a>",
+        h8: "8. Veri Güvenliği",
+        p8: "Bilgilerinizi korumak için uygun teknik ve organizasyonel önlemleri uygularız. Ancak internet üzerinden iletimin hiçbir yöntemi %100 güvenli değildir ve mutlak güvenliği garanti edemeyiz.",
+        h9: "9. Uluslararası Veri Transferleri",
+        p9: "Bilgileriniz, ülkeniz dışındaki sunuculara aktarılabilir ve burada saklanabilir. Block Unite'ı kullanarak bu tür transferlere onay vermiş olursunuz.",
+        h10: "10. Bu Gizlilik Politikasındaki Değişiklikler",
+        p10: "Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz. Herhangi bir değişikliği uygulamada yeni Gizlilik Politikasını yayınlayarak ve yukarıdaki \"Yürürlük Tarihini\" güncelleyerek size bildireceğiz.",
+        h11: "11. Bize Ulaşın",
+        p11: "Bu Gizlilik Politikası hakkında sorularınız varsa lütfen bize ulaşın:",
+        navHome: "← Ana Sayfa", navSupport: "Destek", navTerms: "Kullanım Koşulları"
+    }
+};
+
+let lang = localStorage.getItem('bu-lang') || 'en';
+function setLanguage(l) {
+    lang = l;
+    localStorage.setItem('bu-lang', l);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (t[l][k] !== undefined) el.innerHTML = t[l][k];
+    });
+    document.getElementById('btn-en').classList.toggle('active', l === 'en');
+    document.getElementById('btn-tr').classList.toggle('active', l === 'tr');
+    document.documentElement.lang = l;
+}
+setLanguage(lang);
+</script>
 </body>
 </html>

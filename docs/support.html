@@ -1,223 +1,216 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support - Block Unite</title>
+    <link rel="icon" href="images/icon.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1A1625 0%, #2D2640 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .logo {
-            font-size: 2.5em;
-            font-weight: bold;
-            background: linear-gradient(135deg, #7C3AED, #9F67FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .back-link {
-            color: #9F67FF;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .content {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        h1 {
-            color: #9F67FF;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
-
-        h2 {
-            color: #9F67FF;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .faq {
-            margin-bottom: 30px;
-        }
-
-        .faq h3 {
-            color: #9F67FF;
-            margin-bottom: 10px;
-            margin-top: 20px;
-        }
-
-        .contact-box {
-            background: rgba(124, 58, 237, 0.2);
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .contact-button {
-            display: inline-block;
-            background: #7C3AED;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: transform 0.2s;
-        }
-
-        .contact-button:hover {
-            transform: translateY(-2px);
-            background: #9F67FF;
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 2em;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --purple: #7C3AED; --purple-light: #9F67FF; --bg-dark: #1A1625; --bg-mid: #2D2640; --text-muted: #9B94AA; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-mid) 100%); min-height: 100vh; }
+        nav { background: rgba(26,22,37,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 12px 24px; }
+        .nav-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-weight: 800; font-size: 1.1em; color: var(--purple-light); text-decoration: none; }
+        .lang-toggle { display: flex; gap: 4px; background: rgba(255,255,255,0.08); padding: 4px; border-radius: 10px; }
+        .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 6px 16px; border-radius: 7px; cursor: pointer; font-size: 0.85em; font-weight: 700; transition: all 0.2s; }
+        .lang-btn.active { background: var(--purple); color: white; }
+        .container { max-width: 840px; margin: 0 auto; padding: 50px 20px; }
+        .content { background: rgba(255,255,255,0.07); backdrop-filter: blur(10px); padding: 48px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.12); color: white; }
+        h1 { color: var(--purple-light); margin-bottom: 16px; font-size: 2.2em; }
+        h2 { color: var(--purple-light); margin-top: 36px; margin-bottom: 14px; font-size: 1.2em; }
+        h3 { color: var(--purple-light); margin-bottom: 8px; margin-top: 22px; font-size: 1em; }
+        p { margin-bottom: 14px; color: rgba(255,255,255,0.75); font-size: 0.95em; }
+        ul { margin: 10px 0 14px 24px; }
+        li { margin: 8px 0; color: rgba(255,255,255,0.75); font-size: 0.95em; }
+        .faq { margin-top: 8px; }
+        .contact-box { background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3); padding: 32px; border-radius: 18px; margin-top: 40px; text-align: center; }
+        .contact-box h2 { margin-top: 0; }
+        .contact-btn { display: inline-block; background: var(--purple); color: white; padding: 14px 40px; border-radius: 12px; text-decoration: none; font-weight: 700; margin-top: 18px; transition: all 0.3s; }
+        .contact-btn:hover { background: var(--purple-light); transform: translateY(-2px); }
+        .store-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .store-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 12px; text-decoration: none; color: white; font-weight: 600; font-size: 0.9em; transition: all 0.3s; }
+        .store-link.apple { background: #111; border: 1px solid rgba(255,255,255,0.15); }
+        .store-link.google { background: #01875f; border: 1px solid rgba(255,255,255,0.15); }
+        .store-link:hover { transform: translateY(-2px); }
+        .footer-nav { margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .footer-nav a { color: var(--purple-light); text-decoration: none; font-size: 0.9em; }
+        .footer-nav a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .content { padding: 24px; } h1 { font-size: 1.7em; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <a href="index.html" class="back-link">← Back to Home</a>
-        </div>
-
-        <div class="content">
-            <h1>📧 Support</h1>
-
-            <p>
-                Welcome to Block Unite support! We're here to help you with any questions or issues
-                you might have. Browse our frequently asked questions below, or contact us directly.
-            </p>
-
-            <div class="faq">
-                <h2>Frequently Asked Questions</h2>
-
-                <h3>How do I play Block Unite?</h3>
-                <p>
-                    Drag numbered blocks from the bottom selection area onto the 8x8 grid.
-                    When three or more identical blocks are placed next to each other, they merge
-                    into a higher number. Keep merging to reach 2048 and beyond!
-                </p>
-
-                <h3>How does the leaderboard work?</h3>
-                <p>
-                    Your highest score is automatically submitted to the global leaderboard.
-                    Enter a nickname to appear on the leaderboard and compete with players worldwide.
-                    Internet connection required for leaderboard features.
-                </p>
-
-                <h3>What are gems used for?</h3>
-                <p>
-                    Gems are earned by completing achievements and daily challenges.
-                    You can use gems to continue games when you run out of moves.
-                </p>
-
-                <h3>Can I play offline?</h3>
-                <p>
-                    Yes! Block Unite works perfectly offline. However, you'll need an internet
-                    connection to sync your leaderboard scores and achievements.
-                </p>
-
-                <h3>How do daily challenges work?</h3>
-                <p>
-                    New challenges are available every day! Complete them to earn bonus gems
-                    and exclusive achievements. Challenges reset at midnight UTC.
-                </p>
-
-                <h3>Is Block Unite free?</h3>
-                <p>
-                    Yes, Block Unite is completely free to download and play. The game is supported
-                    by optional ads.
-                </p>
-
-                <h3>My game progress was lost. What should I do?</h3>
-                <p>
-                    Game progress is saved locally on your device. Make sure you don't delete the app
-                    without backing up. If you're switching devices, your leaderboard nickname and
-                    score are saved in the cloud.
-                </p>
-
-                <h3>I found a bug. How do I report it?</h3>
-                <p>
-                    Please contact us using the email below with details about the bug,
-                    including your device model and iOS version. We appreciate your help
-                    in making Block Unite better!
-                </p>
-
-                <h3>Can I suggest new features?</h3>
-                <p>
-                    Absolutely! We love hearing from our players. Send us your ideas and
-                    feedback - we read every message.
-                </p>
-            </div>
-
-            <div class="contact-box">
-                <h2>Still Need Help?</h2>
-                <p style="margin: 20px 0;">
-                    We typically respond within 24-48 hours. Please include as much detail
-                    as possible about your issue, including:
-                </p>
-                <ul style="text-align: left; max-width: 400px; margin: 20px auto;">
-                    <li>Your device model and iOS version</li>
-                    <li>A description of the problem</li>
-                    <li>Steps to reproduce the issue (if applicable)</li>
-                    <li>Screenshots (if helpful)</li>
-                </ul>
-                <a href="mailto:aykuterd@gmail.com?subject=Block%20Unite%20Support" class="contact-button">
-                    📧 Contact Support
-                </a>
-                <p style="margin-top: 20px; font-size: 0.9em; color: #9B94AA;">
-                    Email: aykuterd@gmail.com
-                </p>
-            </div>
-
-            <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
-                <a href="index.html" class="back-link">← Back to Home</a> |
-                <a href="privacy.html" class="back-link">Privacy Policy</a> |
-                <a href="terms.html" class="back-link">Terms of Use</a>
-            </div>
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">🎮 Block Unite</a>
+        <div class="lang-toggle">
+            <button onclick="setLanguage('en')" id="btn-en" class="lang-btn active">EN</button>
+            <button onclick="setLanguage('tr')" id="btn-tr" class="lang-btn">TR</button>
         </div>
     </div>
+</nav>
+
+<div class="container">
+    <div class="content">
+        <h1>📧 <span data-i18n="title">Support</span></h1>
+        <p data-i18n="intro">Welcome to Block Unite support! Browse our frequently asked questions below, or contact us directly. We're happy to help!</p>
+
+        <div class="faq">
+            <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
+
+            <h3 data-i18n="q1">How do I play Block Unite?</h3>
+            <p data-i18n="a1">Tap any column on the grid to drop the block shown as NEXT into that column. Blocks fall to the lowest empty row. When two or more identical blocks touch each other, they merge and double in value. Keep merging to reach 2048 and beyond!</p>
+
+            <h3 data-i18n="q2">What are the special abilities (UNDO, TRASH, SMASH, MIX)?</h3>
+            <p data-i18n="a2"><strong>UNDO</strong> reverses your last block placement. <strong>TRASH</strong> discards the current block so you can skip to the next one. <strong>SMASH</strong> lets you tap and destroy any block on the grid to open up space. <strong>MIX</strong> shuffles the order of upcoming blocks. Each ability costs gems to use.</p>
+
+            <h3 data-i18n="q3">How do I earn gems?</h3>
+            <p data-i18n="a3">Gems are earned by completing achievements and claiming daily bonuses. Log in every day for a 7-day streak — rewards increase each day, from 5 gems on Day 1 to a special gift on Day 7. You can also watch optional ads to earn extra gems.</p>
+
+            <h3 data-i18n="q4">How does the leaderboard work?</h3>
+            <p data-i18n="a4">Your highest score is automatically submitted to the global leaderboard. Choose a nickname in the Profile screen to appear publicly. The leaderboard has three categories: <strong>Top Score</strong>, <strong>Most Blocks Merged</strong>, and <strong>Most Active</strong>. An internet connection is required.</p>
+
+            <h3 data-i18n="q5">Can I play offline?</h3>
+            <p data-i18n="a5">Yes! Block Unite works fully offline for gameplay. Your scores will sync to the leaderboard the next time you connect to the internet.</p>
+
+            <h3 data-i18n="q6">How do achievements work?</h3>
+            <p data-i18n="a6">There are 31 achievements organized into milestone categories such as Score Milestones, Block Value Milestones, and more. Complete them to earn bonus gems and track your overall progress. You can view your achievements from the main menu.</p>
+
+            <h3 data-i18n="q7">My game progress was lost. What can I do?</h3>
+            <p data-i18n="a7">Game progress is saved locally on your device. Avoid deleting the app without noting your account details. Your leaderboard nickname and score are saved in the cloud — if you log back in with the same account, your cloud data will be restored.</p>
+
+            <h3 data-i18n="q8">Is Block Unite free?</h3>
+            <p data-i18n="a8">Yes, Block Unite is completely free to download and play. The game may show optional ads. Special abilities require gems, which are earned through gameplay — no purchase necessary.</p>
+
+            <h3 data-i18n="q9">I found a bug. How do I report it?</h3>
+            <p data-i18n="a9">Please email us with your device model, operating system version, a description of the bug, and steps to reproduce it if possible. Screenshots are always helpful. We read every message and appreciate your help making Block Unite better!</p>
+
+            <h3 data-i18n="q10">Can I suggest new features?</h3>
+            <p data-i18n="a10">Absolutely! We love hearing from our players. Send us your ideas via email — we read every message and your feedback shapes the future of Block Unite.</p>
+        </div>
+
+        <div class="contact-box">
+            <h2 data-i18n="contactTitle">Still Need Help?</h2>
+            <p data-i18n="contactDesc">We typically respond within 24–48 hours. Please include as much detail as possible about your issue:</p>
+            <ul style="text-align:left; max-width:380px; margin:14px auto;">
+                <li data-i18n="c1">Your device model and OS version</li>
+                <li data-i18n="c2">A clear description of the problem</li>
+                <li data-i18n="c3">Steps to reproduce the issue (if applicable)</li>
+                <li data-i18n="c4">Screenshots (if helpful)</li>
+            </ul>
+            <a href="mailto:aykuterd@gmail.com?subject=Block%20Unite%20Support" class="contact-btn" data-i18n="contactBtn">📧 Contact Support</a>
+            <p style="margin-top:16px; font-size:0.88em; color:var(--text-muted);">aykuterd@gmail.com</p>
+        </div>
+
+        <div style="margin-top:32px; text-align:center;">
+            <p style="margin-bottom:14px; color:var(--text-muted); font-size:0.9em;" data-i18n="downloadTitle">Download Block Unite</p>
+            <div class="store-links">
+                <a href="https://apps.apple.com/tr/app/block-unite/id6757486449" class="store-link apple" target="_blank" rel="noopener">
+                    🍎 <span data-i18n="appStore">App Store</span>
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.aykuterdogdu.blokla" class="store-link google" target="_blank" rel="noopener">
+                    ▶ <span data-i18n="googlePlay">Google Play</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <a href="index.html" data-i18n="navHome">← Home</a>
+            <a href="privacy.html" data-i18n="navPrivacy">Privacy Policy</a>
+            <a href="terms.html" data-i18n="navTerms">Terms of Use</a>
+        </div>
+    </div>
+</div>
+
+<script>
+const t = {
+    en: {
+        title: "Support",
+        intro: "Welcome to Block Unite support! Browse our frequently asked questions below, or contact us directly. We're happy to help!",
+        faqTitle: "Frequently Asked Questions",
+        q1: "How do I play Block Unite?",
+        a1: "Tap any column on the grid to drop the block shown as NEXT into that column. Blocks fall to the lowest empty row. When two or more identical blocks touch each other, they merge and double in value. Keep merging to reach 2048 and beyond!",
+        q2: "What are the special abilities (UNDO, TRASH, SMASH, MIX)?",
+        a2: "<strong>UNDO</strong> reverses your last block placement. <strong>TRASH</strong> discards the current block so you can skip to the next one. <strong>SMASH</strong> lets you tap and destroy any block on the grid to open up space. <strong>MIX</strong> shuffles the order of upcoming blocks. Each ability costs gems to use.",
+        q3: "How do I earn gems?",
+        a3: "Gems are earned by completing achievements and claiming daily bonuses. Log in every day for a 7-day streak — rewards increase each day, from 5 gems on Day 1 to a special gift on Day 7. You can also watch optional ads to earn extra gems.",
+        q4: "How does the leaderboard work?",
+        a4: "Your highest score is automatically submitted to the global leaderboard. Choose a nickname in the Profile screen to appear publicly. The leaderboard has three categories: <strong>Top Score</strong>, <strong>Most Blocks Merged</strong>, and <strong>Most Active</strong>. An internet connection is required.",
+        q5: "Can I play offline?",
+        a5: "Yes! Block Unite works fully offline for gameplay. Your scores will sync to the leaderboard the next time you connect to the internet.",
+        q6: "How do achievements work?",
+        a6: "There are 31 achievements organized into milestone categories such as Score Milestones, Block Value Milestones, and more. Complete them to earn bonus gems and track your overall progress. You can view your achievements from the main menu.",
+        q7: "My game progress was lost. What can I do?",
+        a7: "Game progress is saved locally on your device. Avoid deleting the app without noting your account details. Your leaderboard nickname and score are saved in the cloud — if you log back in with the same account, your cloud data will be restored.",
+        q8: "Is Block Unite free?",
+        a8: "Yes, Block Unite is completely free to download and play. The game may show optional ads. Special abilities require gems, which are earned through gameplay — no purchase necessary.",
+        q9: "I found a bug. How do I report it?",
+        a9: "Please email us with your device model, operating system version, a description of the bug, and steps to reproduce it if possible. Screenshots are always helpful. We read every message and appreciate your help making Block Unite better!",
+        q10: "Can I suggest new features?",
+        a10: "Absolutely! We love hearing from our players. Send us your ideas via email — we read every message and your feedback shapes the future of Block Unite.",
+        contactTitle: "Still Need Help?",
+        contactDesc: "We typically respond within 24–48 hours. Please include as much detail as possible about your issue:",
+        c1: "Your device model and OS version",
+        c2: "A clear description of the problem",
+        c3: "Steps to reproduce the issue (if applicable)",
+        c4: "Screenshots (if helpful)",
+        contactBtn: "📧 Contact Support",
+        downloadTitle: "Download Block Unite",
+        appStore: "App Store",
+        googlePlay: "Google Play",
+        navHome: "← Home", navPrivacy: "Privacy Policy", navTerms: "Terms of Use"
+    },
+    tr: {
+        title: "Destek",
+        intro: "Block Unite destek sayfasına hoş geldiniz! Aşağıdaki sık sorulan sorulara göz atın veya doğrudan bizimle iletişime geçin. Yardımcı olmaktan mutluluk duyarız!",
+        faqTitle: "Sık Sorulan Sorular",
+        q1: "Block Unite nasıl oynanır?",
+        a1: "Bloğu o sütuna bırakmak için ızgaradaki herhangi bir sütuna dokun. NEXT olarak gösterilen blok, o sütunun en alt boş satırına düşer. İki veya daha fazla özdeş blok birbirine değdiğinde birleşerek değerleri iki katına çıkar. 2048'e ve ötesine ulaşmak için birleştirmeye devam et!",
+        q2: "Özel yetenekler (GERİ AL, ÇÖP, EZ, KARIŞTIR) ne işe yarar?",
+        a2: "<strong>GERİ AL</strong> son blok yerleştirmeni geri çevirir. <strong>ÇÖP</strong> mevcut bloğu atar ve bir sonrakine geçmeni sağlar. <strong>EZ</strong> tahtadaki herhangi bir bloğa dokunarak yok etmeni ve alan açmanı sağlar. <strong>KARIŞTIR</strong> yaklaşan blokların sırasını karıştırır. Her yetenek kullanmak için elmas gerektirir.",
+        q3: "Elmasları nasıl kazanırım?",
+        a3: "Elmaslar başarımları tamamlayarak ve günlük bonusları talep ederek kazanılır. 7 günlük seri için her gün giriş yap — ödüller her gün artar, 1. Günde 5 elmasta başlayarak 7. Günde özel hediyeye kadar. Ekstra elmas kazanmak için isteğe bağlı reklamlar da izleyebilirsin.",
+        q4: "Sıralama tablosu nasıl çalışır?",
+        a4: "En yüksek puanın otomatik olarak global sıralama tablosuna gönderilir. Herkese açık görünmek için Profil ekranında bir takma ad seç. Sıralama tablosunun üç kategorisi vardır: <strong>En Yüksek Skor</strong>, <strong>En Çok Birleştirilen Blok</strong> ve <strong>En Aktif</strong>. İnternet bağlantısı gereklidir.",
+        q5: "Çevrimdışı oynayabilir miyim?",
+        a5: "Evet! Block Unite oyun için tamamen çevrimdışı çalışır. Puanların, bir sonraki internet bağlantında sıralama tablosuna senkronize edilecektir.",
+        q6: "Başarımlar nasıl çalışır?",
+        a6: "Skor Kilometre Taşları, Blok Değeri Kilometre Taşları ve daha fazlası gibi kilometre taşı kategorilerine göre düzenlenmiş 31 başarım bulunmaktadır. Bonus elmas kazanmak ve genel ilerlemenizi takip etmek için bunları tamamlayın. Başarımlarınızı ana menüden görüntüleyebilirsiniz.",
+        q7: "Oyun ilerlememı kaybettim. Ne yapabilirim?",
+        a7: "Oyun ilerlemesi cihazınıza yerel olarak kaydedilir. Hesap bilgilerinizi not etmeden uygulamayı silmekten kaçının. Sıralama tablosu takma adınız ve puanınız bulutta kaydedilir — aynı hesapla tekrar giriş yaparsanız, bulut verileriniz geri yüklenir.",
+        q8: "Block Unite ücretsiz mi?",
+        a8: "Evet, Block Unite tamamen ücretsiz olarak indirilebilir ve oynanabilir. Oyun isteğe bağlı reklamlar gösterebilir. Özel yetenekler oyun yoluyla kazanılan elmaslar gerektirir — satın alma gerekmez.",
+        q9: "Bir hata buldum. Nasıl rapor edebilirim?",
+        a9: "Lütfen cihaz modeliniz, işletim sistemi sürümünüz, hatanın açıklaması ve mümkünse onu yeniden oluşturma adımlarıyla bize e-posta gönderin. Ekran görüntüleri her zaman yardımcıdır. Her mesajı okuyoruz ve Block Unite'ı daha iyi hale getirme konusundaki yardımınıza değer veriyoruz!",
+        q10: "Yeni özellikler önerebilir miyim?",
+        a10: "Kesinlikle! Oyuncularımızdan geri bildirim almayı seviyoruz. Fikirlerinizi e-posta yoluyla gönderin — her mesajı okuyoruz ve geri bildiriminiz Block Unite'ın geleceğini şekillendiriyor.",
+        contactTitle: "Hâlâ Yardıma İhtiyacınız Var mı?",
+        contactDesc: "Genellikle 24-48 saat içinde yanıt veriyoruz. Lütfen sorununuz hakkında mümkün olduğunca fazla ayrıntı ekleyin:",
+        c1: "Cihaz modeliniz ve işletim sistemi sürümünüz",
+        c2: "Sorunun açık bir açıklaması",
+        c3: "Sorunu yeniden oluşturma adımları (varsa)",
+        c4: "Ekran görüntüleri (yardımcıysa)",
+        contactBtn: "📧 Destek ile İletişime Geç",
+        downloadTitle: "Block Unite'ı İndir",
+        appStore: "App Store",
+        googlePlay: "Google Play",
+        navHome: "← Ana Sayfa", navPrivacy: "Gizlilik Politikası", navTerms: "Kullanım Koşulları"
+    }
+};
+
+let lang = localStorage.getItem('bu-lang') || 'en';
+function setLanguage(l) {
+    lang = l;
+    localStorage.setItem('bu-lang', l);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (t[l][k] !== undefined) el.innerHTML = t[l][k];
+    });
+    document.getElementById('btn-en').classList.toggle('active', l === 'en');
+    document.getElementById('btn-tr').classList.toggle('active', l === 'tr');
+    document.documentElement.lang = l;
+}
+setLanguage(lang);
+</script>
 </body>
 </html>

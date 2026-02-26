@@ -1,272 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Use - Block Unite</title>
+    <link rel="icon" href="images/icon.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1A1625 0%, #2D2640 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .back-link {
-            color: #9F67FF;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .content {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        h1 {
-            color: #9F67FF;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
-
-        h2 {
-            color: #9F67FF;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .date {
-            color: #9B94AA;
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-
-        p {
-            margin-bottom: 15px;
-        }
-
-        ul {
-            margin: 15px 0 15px 30px;
-        }
-
-        li {
-            margin: 10px 0;
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 2em;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --purple: #7C3AED; --purple-light: #9F67FF; --bg-dark: #1A1625; --bg-mid: #2D2640; --text-muted: #9B94AA; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-mid) 100%); min-height: 100vh; }
+        nav { background: rgba(26,22,37,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 12px 24px; }
+        .nav-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-weight: 800; font-size: 1.1em; color: var(--purple-light); text-decoration: none; }
+        .lang-toggle { display: flex; gap: 4px; background: rgba(255,255,255,0.08); padding: 4px; border-radius: 10px; }
+        .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 6px 16px; border-radius: 7px; cursor: pointer; font-size: 0.85em; font-weight: 700; transition: all 0.2s; }
+        .lang-btn.active { background: var(--purple); color: white; }
+        .container { max-width: 840px; margin: 0 auto; padding: 50px 20px; }
+        .content { background: rgba(255,255,255,0.07); backdrop-filter: blur(10px); padding: 48px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.12); color: white; }
+        h1 { color: var(--purple-light); margin-bottom: 8px; font-size: 2.2em; }
+        h2 { color: var(--purple-light); margin-top: 32px; margin-bottom: 12px; font-size: 1.2em; }
+        h3 { color: rgba(255,255,255,0.85); margin-top: 18px; margin-bottom: 8px; font-size: 1em; font-weight: 600; }
+        .date { color: var(--text-muted); font-style: italic; margin-bottom: 28px; font-size: 0.9em; }
+        p { margin-bottom: 14px; color: rgba(255,255,255,0.75); font-size: 0.95em; }
+        ul { margin: 10px 0 14px 24px; }
+        li { margin: 8px 0; color: rgba(255,255,255,0.75); font-size: 0.95em; }
+        a { color: var(--purple-light); }
+        .footer-nav { margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .footer-nav a { color: var(--purple-light); text-decoration: none; font-size: 0.9em; }
+        .footer-nav a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .content { padding: 24px; } h1 { font-size: 1.7em; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <a href="index.html" class="back-link">← Back to Home</a>
-        </div>
-
-        <div class="content">
-            <h1>📜 Terms of Use</h1>
-            <p class="date">Effective Date: January 7, 2026</p>
-
-            <p>
-                Welcome to Block Unite! These Terms of Use ("Terms") govern your use of the Block Unite
-                mobile application ("App"). By downloading, installing, or using the App, you agree to
-                be bound by these Terms.
-            </p>
-
-            <h2>1. Acceptance of Terms</h2>
-
-            <p>
-                By accessing or using Block Unite, you agree to comply with these Terms and our Privacy Policy.
-                If you do not agree to these Terms, please do not use the App.
-            </p>
-
-            <h2>2. License to Use</h2>
-
-            <p>
-                We grant you a limited, non-exclusive, non-transferable, revocable license to download and
-                use the App for your personal, non-commercial use, subject to these Terms.
-            </p>
-
-            <h3>You may NOT:</h3>
-            <ul>
-                <li>Modify, adapt, translate, or create derivative works of the App</li>
-                <li>Reverse engineer, decompile, or disassemble the App</li>
-                <li>Remove or alter any copyright, trademark, or proprietary notices</li>
-                <li>Use the App for any illegal or unauthorized purpose</li>
-                <li>Attempt to gain unauthorized access to our systems or networks</li>
-                <li>Use automated systems or software to extract data from the App</li>
-            </ul>
-
-            <h2>3. User Conduct</h2>
-
-            <p>When using Block Unite, you agree to:</p>
-            <ul>
-                <li>Choose appropriate usernames/nicknames (no offensive, vulgar, or inappropriate names)</li>
-                <li>Not harass, abuse, or harm other users</li>
-                <li>Not cheat, exploit bugs, or manipulate the leaderboard</li>
-                <li>Not use the App in any way that could damage, disable, or impair our servers</li>
-            </ul>
-
-            <p>
-                We reserve the right to remove inappropriate usernames, ban users who violate these Terms,
-                and delete any content that violates our policies.
-            </p>
-
-            <h2>4. Intellectual Property</h2>
-
-            <p>
-                Block Unite, including all content, features, graphics, code, and functionality, is owned
-                by us and protected by international copyright, trademark, and other intellectual property laws.
-            </p>
-
-            <p>
-                You may not copy, reproduce, distribute, or create derivative works from any part of the App
-                without our explicit written permission.
-            </p>
-
-            <h2>5. User Content</h2>
-
-            <p>
-                When you submit a nickname or other content to Block Unite, you grant us a worldwide,
-                non-exclusive, royalty-free license to use, display, and distribute that content in
-                connection with the App (such as displaying your nickname on the leaderboard).
-            </p>
-
-            <h2>6. In-App Purchases and Virtual Items</h2>
-
-            <p>
-                Block Unite may offer virtual items (such as gems) that can be earned through gameplay.
-                These virtual items have no real-world value and cannot be exchanged for real money.
-            </p>
-
-            <p>
-                If we introduce in-app purchases in the future, all purchases are final and non-refundable
-                except as required by law.
-            </p>
-
-            <h2>7. Advertisements</h2>
-
-            <p>
-                Block Unite may display third-party advertisements. We are not responsible for the content
-                of these advertisements. When ads are implemented, you can manage ad personalization through
-                iOS privacy settings.
-            </p>
-
-            <h2>8. Disclaimer of Warranties</h2>
-
-            <p>
-                THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS
-                OR IMPLIED. WE DO NOT WARRANT THAT:
-            </p>
-            <ul>
-                <li>The App will be uninterrupted, secure, or error-free</li>
-                <li>Defects will be corrected</li>
-                <li>The App is free of viruses or harmful components</li>
-                <li>Your data will always be backed up or preserved</li>
-            </ul>
-
-            <h2>9. Limitation of Liability</h2>
-
-            <p>
-                TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL,
-                SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER
-                INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, OR GOODWILL.
-            </p>
-
-            <h2>10. Changes to the App</h2>
-
-            <p>
-                We reserve the right to modify, suspend, or discontinue the App (or any part thereof) at
-                any time without notice. We will not be liable to you or any third party for any modification,
-                suspension, or discontinuation of the App.
-            </p>
-
-            <h2>11. Termination</h2>
-
-            <p>
-                We may terminate or suspend your access to the App immediately, without prior notice or
-                liability, if you breach these Terms. Upon termination, your right to use the App will
-                immediately cease.
-            </p>
-
-            <h2>12. Updates to Terms</h2>
-
-            <p>
-                We may revise these Terms from time to time. The most current version will always be available
-                in the App and on our website. By continuing to use the App after changes become effective,
-                you agree to be bound by the revised Terms.
-            </p>
-
-            <h2>13. Governing Law</h2>
-
-            <p>
-                These Terms shall be governed by and construed in accordance with the laws of Turkey,
-                without regard to its conflict of law provisions.
-            </p>
-
-            <h2>14. Severability</h2>
-
-            <p>
-                If any provision of these Terms is found to be unenforceable or invalid, that provision
-                will be limited or eliminated to the minimum extent necessary, and the remaining provisions
-                will remain in full force and effect.
-            </p>
-
-            <h2>15. Contact Information</h2>
-
-            <p>
-                If you have any questions about these Terms, please contact us:
-            </p>
-            <p style="margin-left: 30px;">
-                Email: <a href="mailto:aykuterd@gmail.com" style="color: #9F67FF;">aykuterd@gmail.com</a><br>
-                App: Block Unite<br>
-                Developer: Aykut Erdoğdu
-            </p>
-
-            <p style="margin-top: 30px;">
-                By using Block Unite, you acknowledge that you have read, understood, and agree to be
-                bound by these Terms of Use.
-            </p>
-
-            <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
-                <a href="index.html" class="back-link">← Back to Home</a> |
-                <a href="support.html" class="back-link">Support</a> |
-                <a href="privacy.html" class="back-link">Privacy Policy</a>
-            </div>
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">🎮 Block Unite</a>
+        <div class="lang-toggle">
+            <button onclick="setLanguage('en')" id="btn-en" class="lang-btn active">EN</button>
+            <button onclick="setLanguage('tr')" id="btn-tr" class="lang-btn">TR</button>
         </div>
     </div>
+</nav>
+
+<div class="container">
+    <div class="content">
+        <h1>📜 <span data-i18n="title">Terms of Use</span></h1>
+        <p class="date" data-i18n="date">Effective Date: January 7, 2026</p>
+
+        <p data-i18n="intro">Welcome to Block Unite! These Terms of Use ("Terms") govern your use of the Block Unite mobile application ("App"). By downloading, installing, or using the App, you agree to be bound by these Terms.</p>
+
+        <h2 data-i18n="h1">1. Acceptance of Terms</h2>
+        <p data-i18n="p1">By accessing or using Block Unite, you agree to comply with these Terms and our Privacy Policy. If you do not agree to these Terms, please do not use the App.</p>
+
+        <h2 data-i18n="h2">2. License to Use</h2>
+        <p data-i18n="p2">We grant you a limited, non-exclusive, non-transferable, revocable license to download and use the App for your personal, non-commercial use, subject to these Terms.</p>
+        <h3 data-i18n="h2a">You may NOT:</h3>
+        <ul>
+            <li data-i18n="li2a">Modify, adapt, translate, or create derivative works of the App</li>
+            <li data-i18n="li2b">Reverse engineer, decompile, or disassemble the App</li>
+            <li data-i18n="li2c">Remove or alter any copyright, trademark, or proprietary notices</li>
+            <li data-i18n="li2d">Use the App for any illegal or unauthorized purpose</li>
+            <li data-i18n="li2e">Attempt to gain unauthorized access to our systems or networks</li>
+            <li data-i18n="li2f">Use automated systems or software to extract data from the App</li>
+        </ul>
+
+        <h2 data-i18n="h3">3. User Conduct</h2>
+        <p data-i18n="p3">When using Block Unite, you agree to:</p>
+        <ul>
+            <li data-i18n="li3a">Choose appropriate usernames/nicknames (no offensive, vulgar, or inappropriate names)</li>
+            <li data-i18n="li3b">Not harass, abuse, or harm other users</li>
+            <li data-i18n="li3c">Not cheat, exploit bugs, or manipulate the leaderboard</li>
+            <li data-i18n="li3d">Not use the App in any way that could damage, disable, or impair our servers</li>
+        </ul>
+        <p data-i18n="p3b">We reserve the right to remove inappropriate usernames, ban users who violate these Terms, and delete any content that violates our policies.</p>
+
+        <h2 data-i18n="h4">4. Intellectual Property</h2>
+        <p data-i18n="p4">Block Unite, including all content, features, graphics, code, and functionality, is owned by us and protected by international copyright, trademark, and other intellectual property laws.</p>
+        <p data-i18n="p4b">You may not copy, reproduce, distribute, or create derivative works from any part of the App without our explicit written permission.</p>
+
+        <h2 data-i18n="h5">5. User Content</h2>
+        <p data-i18n="p5">When you submit a nickname or other content to Block Unite, you grant us a worldwide, non-exclusive, royalty-free license to use, display, and distribute that content in connection with the App (such as displaying your nickname on the leaderboard).</p>
+
+        <h2 data-i18n="h6">6. Virtual Items</h2>
+        <p data-i18n="p6">Block Unite offers virtual items (gems) that can be earned through gameplay. These virtual items have no real-world value and cannot be exchanged for real money.</p>
+        <p data-i18n="p6b">If we introduce in-app purchases in the future, all purchases are final and non-refundable except as required by law.</p>
+
+        <h2 data-i18n="h7">7. Advertisements</h2>
+        <p data-i18n="p7">Block Unite may display third-party advertisements. We are not responsible for the content of these advertisements. You can manage ad personalization through your device's privacy settings.</p>
+
+        <h2 data-i18n="h8">8. Disclaimer of Warranties</h2>
+        <p data-i18n="p8">THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND. WE DO NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE; THAT DEFECTS WILL BE CORRECTED; OR THAT YOUR DATA WILL ALWAYS BE PRESERVED.</p>
+
+        <h2 data-i18n="h9">9. Limitation of Liability</h2>
+        <p data-i18n="p9">TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF DATA, USE, PROFITS, OR REVENUES.</p>
+
+        <h2 data-i18n="h10">10. Changes to the App</h2>
+        <p data-i18n="p10">We reserve the right to modify, suspend, or discontinue the App (or any part thereof) at any time without notice. We will not be liable to you for any modification, suspension, or discontinuation of the App.</p>
+
+        <h2 data-i18n="h11">11. Termination</h2>
+        <p data-i18n="p11">We may terminate or suspend your access to the App immediately, without prior notice or liability, if you breach these Terms. Upon termination, your right to use the App will immediately cease.</p>
+
+        <h2 data-i18n="h12">12. Updates to Terms</h2>
+        <p data-i18n="p12">We may revise these Terms from time to time. By continuing to use the App after changes become effective, you agree to be bound by the revised Terms. The current version is always available in the App and on this website.</p>
+
+        <h2 data-i18n="h13">13. Governing Law</h2>
+        <p data-i18n="p13">These Terms shall be governed by and construed in accordance with the laws of Turkey, without regard to its conflict of law provisions.</p>
+
+        <h2 data-i18n="h14">14. Contact Information</h2>
+        <p data-i18n="p14">If you have any questions about these Terms, please contact us:</p>
+        <p style="margin-left:16px;">Email: <a href="mailto:aykuterd@gmail.com">aykuterd@gmail.com</a><br>App: Block Unite<br>Developer: Aykut Erdoğdu</p>
+        <p data-i18n="p14b" style="margin-top:24px;">By using Block Unite, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use.</p>
+
+        <div class="footer-nav">
+            <a href="index.html" data-i18n="navHome">← Home</a>
+            <a href="support.html" data-i18n="navSupport">Support</a>
+            <a href="privacy.html" data-i18n="navPrivacy">Privacy Policy</a>
+        </div>
+    </div>
+</div>
+
+<script>
+const t = {
+    en: {
+        title: "Terms of Use",
+        date: "Effective Date: January 7, 2026",
+        intro: "Welcome to Block Unite! These Terms of Use (\"Terms\") govern your use of the Block Unite mobile application (\"App\"). By downloading, installing, or using the App, you agree to be bound by these Terms.",
+        h1: "1. Acceptance of Terms",
+        p1: "By accessing or using Block Unite, you agree to comply with these Terms and our Privacy Policy. If you do not agree to these Terms, please do not use the App.",
+        h2: "2. License to Use",
+        p2: "We grant you a limited, non-exclusive, non-transferable, revocable license to download and use the App for your personal, non-commercial use, subject to these Terms.",
+        h2a: "You may NOT:",
+        li2a: "Modify, adapt, translate, or create derivative works of the App",
+        li2b: "Reverse engineer, decompile, or disassemble the App",
+        li2c: "Remove or alter any copyright, trademark, or proprietary notices",
+        li2d: "Use the App for any illegal or unauthorized purpose",
+        li2e: "Attempt to gain unauthorized access to our systems or networks",
+        li2f: "Use automated systems or software to extract data from the App",
+        h3: "3. User Conduct",
+        p3: "When using Block Unite, you agree to:",
+        li3a: "Choose appropriate usernames/nicknames (no offensive, vulgar, or inappropriate names)",
+        li3b: "Not harass, abuse, or harm other users",
+        li3c: "Not cheat, exploit bugs, or manipulate the leaderboard",
+        li3d: "Not use the App in any way that could damage, disable, or impair our servers",
+        p3b: "We reserve the right to remove inappropriate usernames, ban users who violate these Terms, and delete any content that violates our policies.",
+        h4: "4. Intellectual Property",
+        p4: "Block Unite, including all content, features, graphics, code, and functionality, is owned by us and protected by international copyright, trademark, and other intellectual property laws.",
+        p4b: "You may not copy, reproduce, distribute, or create derivative works from any part of the App without our explicit written permission.",
+        h5: "5. User Content",
+        p5: "When you submit a nickname or other content to Block Unite, you grant us a worldwide, non-exclusive, royalty-free license to use, display, and distribute that content in connection with the App (such as displaying your nickname on the leaderboard).",
+        h6: "6. Virtual Items",
+        p6: "Block Unite offers virtual items (gems) that can be earned through gameplay. These virtual items have no real-world value and cannot be exchanged for real money.",
+        p6b: "If we introduce in-app purchases in the future, all purchases are final and non-refundable except as required by law.",
+        h7: "7. Advertisements",
+        p7: "Block Unite may display third-party advertisements. We are not responsible for the content of these advertisements. You can manage ad personalization through your device's privacy settings.",
+        h8: "8. Disclaimer of Warranties",
+        p8: "THE APP IS PROVIDED \"AS IS\" AND \"AS AVAILABLE\" WITHOUT WARRANTIES OF ANY KIND. WE DO NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE; THAT DEFECTS WILL BE CORRECTED; OR THAT YOUR DATA WILL ALWAYS BE PRESERVED.",
+        h9: "9. Limitation of Liability",
+        p9: "TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF DATA, USE, PROFITS, OR REVENUES.",
+        h10: "10. Changes to the App",
+        p10: "We reserve the right to modify, suspend, or discontinue the App (or any part thereof) at any time without notice. We will not be liable to you for any modification, suspension, or discontinuation of the App.",
+        h11: "11. Termination",
+        p11: "We may terminate or suspend your access to the App immediately, without prior notice or liability, if you breach these Terms. Upon termination, your right to use the App will immediately cease.",
+        h12: "12. Updates to Terms",
+        p12: "We may revise these Terms from time to time. By continuing to use the App after changes become effective, you agree to be bound by the revised Terms. The current version is always available in the App and on this website.",
+        h13: "13. Governing Law",
+        p13: "These Terms shall be governed by and construed in accordance with the laws of Turkey, without regard to its conflict of law provisions.",
+        h14: "14. Contact Information",
+        p14: "If you have any questions about these Terms, please contact us:",
+        p14b: "By using Block Unite, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use.",
+        navHome: "← Home", navSupport: "Support", navPrivacy: "Privacy Policy"
+    },
+    tr: {
+        title: "Kullanım Koşulları",
+        date: "Yürürlük Tarihi: 7 Ocak 2026",
+        intro: "Block Unite'a hoş geldiniz! Bu Kullanım Koşulları (\"Koşullar\"), Block Unite mobil uygulamasını (\"Uygulama\") kullanımınızı düzenler. Uygulamayı indirerek, yükleyerek veya kullanarak bu Koşulları kabul etmiş olursunuz.",
+        h1: "1. Koşulların Kabulü",
+        p1: "Block Unite'a erişerek veya kullanarak bu Koşullara ve Gizlilik Politikamıza uymayı kabul edersiniz. Bu Koşulları kabul etmiyorsanız lütfen Uygulamayı kullanmayın.",
+        h2: "2. Kullanım Lisansı",
+        p2: "Size, kişisel, ticari olmayan kullanımınız için bu Koşullara tabi olarak Uygulamayı indirme ve kullanma konusunda sınırlı, münhasır olmayan, devredilemez, iptal edilebilir bir lisans veriyoruz.",
+        h2a: "Şunları YAPAMAZSINIZ:",
+        li2a: "Uygulamayı değiştirme, uyarlama, çevirme veya türev çalışmalar oluşturma",
+        li2b: "Uygulamayı tersine mühendislik yapma, derlemeyi çözme veya söküme tabi tutma",
+        li2c: "Herhangi bir telif hakkı, ticari marka veya mülkiyet bildirimini kaldırma veya değiştirme",
+        li2d: "Uygulamayı herhangi bir yasadışı veya yetkisiz amaç için kullanma",
+        li2e: "Sistemlerimize veya ağlarımıza yetkisiz erişim sağlamaya çalışma",
+        li2f: "Uygulamadan veri çıkarmak için otomatik sistemler veya yazılım kullanma",
+        h3: "3. Kullanıcı Davranışı",
+        p3: "Block Unite'ı kullanırken aşağıdakileri kabul edersiniz:",
+        li3a: "Uygun kullanıcı adları/takma adlar seçme (saldırgan, kaba veya uygunsuz isimler kullanmama)",
+        li3b: "Diğer kullanıcılara taciz etmeme, zarar vermeme veya kötüye kullanmama",
+        li3c: "Hile yapmama, hata istismarı yapmama veya sıralama tablosunu manipüle etmeme",
+        li3d: "Uygulamayı sunucularımıza zarar verebilecek, devre dışı bırakabilecek veya bozabilecek herhangi bir şekilde kullanmama",
+        p3b: "Uygunsuz kullanıcı adlarını kaldırma, bu Koşulları ihlal eden kullanıcıları yasaklama ve politikalarımızı ihlal eden içerikleri silme hakkını saklı tutarız.",
+        h4: "4. Fikri Mülkiyet",
+        p4: "Tüm içerik, özellikler, grafikler, kod ve işlevsellik dahil olmak üzere Block Unite, bize aittir ve uluslararası telif hakkı, ticari marka ve diğer fikri mülkiyet yasaları tarafından korunmaktadır.",
+        p4b: "Açık yazılı iznimiz olmadan Uygulamanın herhangi bir bölümünü kopyalayamaz, çoğaltamaz, dağıtamazsınız veya türev çalışmalar oluşturamazsınız.",
+        h5: "5. Kullanıcı İçeriği",
+        p5: "Block Unite'a bir takma ad veya başka bir içerik gönderdiğinizde, bize bu içeriği Uygulama bağlamında (sıralama tablosunda takma adınızı görüntülemek gibi) kullanma, görüntüleme ve dağıtma konusunda dünya genelinde, münhasır olmayan, telif ücreti gerektirmeyen bir lisans verirsiniz.",
+        h6: "6. Sanal Öğeler",
+        p6: "Block Unite, oyun yoluyla kazanılabilen sanal öğeler (elmaslar) sunar. Bu sanal öğelerin gerçek dünya değeri yoktur ve gerçek parayla takas edilemez.",
+        p6b: "Gelecekte uygulama içi satın almalar sunarsak, tüm satın almalar yasanın gerektirdiği durumlar dışında kesin ve iade edilemezdir.",
+        h7: "7. Reklamlar",
+        p7: "Block Unite üçüncü taraf reklamları görüntüleyebilir. Bu reklamların içeriğinden sorumlu değiliz. Reklam kişiselleştirmesini cihazınızın gizlilik ayarlarından yönetebilirsiniz.",
+        h8: "8. Garantilerin Reddi",
+        p8: "UYGULAMA, HERHANGİ BİR GARANTİ OLMAKSIZIN \"OLDUĞU GİBİ\" VE \"MEVCUT OLDUĞU ŞEKILDE\" SUNULMAKTADIR. UYGULAMANIN KESİNTİSİZ, GÜVENLİ VEYA HATASIZ OLACAĞINI; KUSURLARIN DÜZELTİLECEĞİNİ VEYA VERİLERİNİZİN HER ZAMAN KORUNACAĞINI GARANTİ ETMİYORUZ.",
+        h9: "9. Sorumluluk Sınırlaması",
+        p9: "YASANIN İZİN VERDİĞİ AZAMI ÖLÇÜDE, DOLAYLI, ARIZİ, ÖZEL, SONUÇSAL VEYA CEZAİ ZARARLARDAN YA DA VERİ, KULLANIM, KAR VEYA GELİR KAYBINDAN SORUMLU OLMAYACAĞIZ.",
+        h10: "10. Uygulamadaki Değişiklikler",
+        p10: "Uygulamayı (veya herhangi bir bölümünü) herhangi bir zamanda önceden bildirimde bulunmaksızın değiştirme, askıya alma veya durdurma hakkını saklı tutarız. Uygulamanın herhangi bir değişikliği, askıya alınması veya durdurulması nedeniyle size karşı sorumlu olmayacağız.",
+        h11: "11. Fesih",
+        p11: "Bu Koşulları ihlal etmeniz durumunda, önceden haber vermeksizin veya yükümlülük doğurmaksızın, Uygulamaya erişiminizi derhal sonlandırabilir veya askıya alabiliriz. Fesih üzerine Uygulamayı kullanma hakkınız derhal sona erer.",
+        h12: "12. Koşulların Güncellenmesi",
+        p12: "Bu Koşulları zaman zaman gözden geçirebiliriz. Değişiklikler yürürlüğe girdikten sonra Uygulamayı kullanmaya devam ederek revize edilmiş Koşullara bağlı olmayı kabul etmiş olursunuz. Güncel sürüm her zaman Uygulamada ve bu web sitesinde mevcuttur.",
+        h13: "13. Geçerli Hukuk",
+        p13: "Bu Koşullar, kanunlar ihtilafı hükümleri gözetilmeksizin Türkiye Cumhuriyeti yasalarına göre yorumlanacak ve uygulanacaktır.",
+        h14: "14. İletişim Bilgileri",
+        p14: "Bu Koşullar hakkında sorularınız varsa lütfen bize ulaşın:",
+        p14b: "Block Unite'ı kullanarak bu Kullanım Koşullarını okuduğunuzu, anladığınızı ve bağlı olmayı kabul ettiğinizi onaylamış olursunuz.",
+        navHome: "← Ana Sayfa", navSupport: "Destek", navPrivacy: "Gizlilik Politikası"
+    }
+};
+
+let lang = localStorage.getItem('bu-lang') || 'en';
+function setLanguage(l) {
+    lang = l;
+    localStorage.setItem('bu-lang', l);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (t[l][k] !== undefined) el.innerHTML = t[l][k];
+    });
+    document.getElementById('btn-en').classList.toggle('active', l === 'en');
+    document.getElementById('btn-tr').classList.toggle('active', l === 'tr');
+    document.documentElement.lang = l;
+}
+setLanguage(lang);
+</script>
 </body>
 </html>

@@ -1,243 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Deletion - Block Unite</title>
+    <link rel="icon" href="images/icon.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1A1625 0%, #2D2640 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .back-link {
-            color: #9F67FF;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .content {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        h1 {
-            color: #9F67FF;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
-
-        h2 {
-            color: #9F67FF;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .info-box {
-            background: rgba(124, 58, 237, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border-left: 4px solid #7C3AED;
-        }
-
-        .warning-box {
-            background: rgba(239, 68, 68, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border-left: 4px solid #EF4444;
-        }
-
-        .deletion-button {
-            display: inline-block;
-            background: #7C3AED;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: transform 0.2s;
-            font-size: 1.1em;
-        }
-
-        .deletion-button:hover {
-            transform: translateY(-2px);
-            background: #9F67FF;
-        }
-
-        ul {
-            margin: 15px 0 15px 30px;
-        }
-
-        li {
-            margin: 10px 0;
-        }
-
-        .step-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-        }
-
-        .step-number {
-            display: inline-block;
-            background: #7C3AED;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 30px;
-            margin-right: 10px;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 2em;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --purple: #7C3AED; --purple-light: #9F67FF; --bg-dark: #1A1625; --bg-mid: #2D2640; --text-muted: #9B94AA; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-mid) 100%); min-height: 100vh; }
+        nav { background: rgba(26,22,37,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 12px 24px; }
+        .nav-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-weight: 800; font-size: 1.1em; color: var(--purple-light); text-decoration: none; }
+        .lang-toggle { display: flex; gap: 4px; background: rgba(255,255,255,0.08); padding: 4px; border-radius: 10px; }
+        .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 6px 16px; border-radius: 7px; cursor: pointer; font-size: 0.85em; font-weight: 700; transition: all 0.2s; }
+        .lang-btn.active { background: var(--purple); color: white; }
+        .container { max-width: 840px; margin: 0 auto; padding: 50px 20px; }
+        .content { background: rgba(255,255,255,0.07); backdrop-filter: blur(10px); padding: 48px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.12); color: white; }
+        h1 { color: var(--purple-light); margin-bottom: 20px; font-size: 2.2em; }
+        h2 { color: var(--purple-light); margin-top: 32px; margin-bottom: 12px; font-size: 1.2em; }
+        h3 { color: white; margin-bottom: 8px; font-size: 1em; font-weight: 700; }
+        p { margin-bottom: 14px; color: rgba(255,255,255,0.75); font-size: 0.95em; }
+        ul { margin: 10px 0 14px 24px; }
+        li { margin: 8px 0; color: rgba(255,255,255,0.75); font-size: 0.95em; }
+        a { color: var(--purple-light); }
+        .info-box { background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3); padding: 22px; border-radius: 16px; margin: 20px 0; }
+        .warning-box { background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); padding: 22px; border-radius: 16px; margin: 20px 0; }
+        .step-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 16px 20px; border-radius: 12px; margin: 12px 0; display: flex; align-items: flex-start; gap: 14px; }
+        .step-number { display: flex; align-items: center; justify-content: center; background: var(--purple); color: white; width: 32px; height: 32px; min-width: 32px; border-radius: 50%; font-weight: 700; font-size: 0.95em; }
+        .deletion-btn { display: inline-block; background: #EF4444; color: white; padding: 14px 36px; border-radius: 12px; text-decoration: none; font-weight: 700; margin-top: 8px; transition: all 0.3s; }
+        .deletion-btn:hover { background: #DC2626; transform: translateY(-2px); }
+        .footer-nav { margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .footer-nav a { color: var(--purple-light); text-decoration: none; font-size: 0.9em; }
+        .footer-nav a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .content { padding: 24px; } h1 { font-size: 1.7em; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <a href="index.html" class="back-link">← Back to Home</a>
-        </div>
-
-        <div class="content">
-            <h1>🗑️ Data Deletion Request</h1>
-
-            <p>
-                We respect your privacy and your right to control your personal data.
-                If you would like to delete your data from Block Unite, please follow the instructions below.
-            </p>
-
-            <div class="info-box">
-                <h3>📋 What Data Will Be Deleted?</h3>
-                <p>When you request data deletion, we will permanently remove:</p>
-                <ul>
-                    <li>Your nickname/display name</li>
-                    <li>Your game scores and leaderboard entries</li>
-                    <li>Your achievement progress</li>
-                    <li>Your user ID from our database</li>
-                    <li>Any other personal data associated with your account</li>
-                </ul>
-            </div>
-
-            <div class="warning-box">
-                <h3>⚠️ Important Notice</h3>
-                <p><strong>This action is permanent and cannot be undone.</strong></p>
-                <p>Once your data is deleted:</p>
-                <ul>
-                    <li>Your leaderboard ranking will be removed</li>
-                    <li>All achievements and progress will be lost</li>
-                    <li>You will need to create a new profile to play again</li>
-                    <li>Your nickname may become available for other users</li>
-                </ul>
-            </div>
-
-            <h2>How to Request Data Deletion</h2>
-
-            <div class="step-box">
-                <span class="step-number">1</span>
-                <strong>Click the button below</strong> to send us a data deletion request via email
-            </div>
-
-            <div class="step-box">
-                <span class="step-number">2</span>
-                <strong>Include the following information</strong> in your email:
-                <ul style="margin-top: 10px;">
-                    <li>Your nickname/display name in the game (if you remember it)</li>
-                    <li>Approximate date when you created your profile</li>
-                    <li>Any other information that can help us identify your account</li>
-                </ul>
-            </div>
-
-            <div class="step-box">
-                <span class="step-number">3</span>
-                <strong>We will process your request</strong> within 30 days and send you a confirmation email
-            </div>
-
-            <div style="text-align: center; margin: 40px 0;">
-                <a href="mailto:aykuterd@gmail.com?subject=Block%20Unite%20-%20Data%20Deletion%20Request&body=Hello%2C%0A%0AI%20would%20like%20to%20request%20the%20deletion%20of%20my%20data%20from%20Block%20Unite.%0A%0AMy%20Nickname%3A%20%5BYour%20nickname%20here%5D%0A%0AThank%20you."
-                   class="deletion-button">
-                    📧 Request Data Deletion
-                </a>
-            </div>
-
-            <h2>Alternative Contact Method</h2>
-
-            <p>
-                If you prefer, you can also email us directly at:
-                <a href="mailto:aykuterd@gmail.com" style="color: #9F67FF;">aykuterd@gmail.com</a>
-            </p>
-
-            <p style="margin-top: 15px;">
-                Please use the subject line: <strong>"Block Unite - Data Deletion Request"</strong>
-            </p>
-
-            <h2>Response Time</h2>
-
-            <p>
-                We typically respond to data deletion requests within <strong>7 business days</strong>.
-                The actual deletion process will be completed within <strong>30 days</strong> as required by GDPR and CCPA regulations.
-            </p>
-
-            <p style="margin-top: 15px;">
-                You will receive a confirmation email once your data has been permanently deleted from our systems.
-            </p>
-
-            <h2>Questions?</h2>
-
-            <p>
-                If you have any questions about the data deletion process or our data practices,
-                please review our <a href="privacy.html" style="color: #9F67FF;">Privacy Policy</a>
-                or contact us at <a href="mailto:aykuterd@gmail.com" style="color: #9F67FF;">aykuterd@gmail.com</a>.
-            </p>
-
-            <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
-                <a href="index.html" class="back-link">← Back to Home</a> |
-                <a href="support.html" class="back-link">Support</a> |
-                <a href="privacy.html" class="back-link">Privacy Policy</a> |
-                <a href="terms.html" class="back-link">Terms of Use</a>
-            </div>
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">🎮 Block Unite</a>
+        <div class="lang-toggle">
+            <button onclick="setLanguage('en')" id="btn-en" class="lang-btn active">EN</button>
+            <button onclick="setLanguage('tr')" id="btn-tr" class="lang-btn">TR</button>
         </div>
     </div>
+</nav>
+
+<div class="container">
+    <div class="content">
+        <h1>🗑️ <span data-i18n="title">Data Deletion Request</span></h1>
+
+        <p data-i18n="intro">We respect your privacy and your right to control your personal data. If you would like to delete your data from Block Unite, please follow the instructions below.</p>
+
+        <div class="info-box">
+            <h3 data-i18n="infoTitle">📋 What Data Will Be Deleted?</h3>
+            <p data-i18n="infoDesc">When you request data deletion, we will permanently remove:</p>
+            <ul>
+                <li data-i18n="id1">Your nickname/display name</li>
+                <li data-i18n="id2">Your game scores and leaderboard entries</li>
+                <li data-i18n="id3">Your achievement progress</li>
+                <li data-i18n="id4">Your user ID from our database</li>
+                <li data-i18n="id5">Any other personal data associated with your account</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h3 data-i18n="warnTitle">⚠️ Important Notice</h3>
+            <p data-i18n="warnDesc"><strong>This action is permanent and cannot be undone.</strong> Once your data is deleted:</p>
+            <ul>
+                <li data-i18n="wd1">Your leaderboard ranking will be removed</li>
+                <li data-i18n="wd2">All achievements and progress will be lost</li>
+                <li data-i18n="wd3">You will need to create a new profile to play again</li>
+                <li data-i18n="wd4">Your nickname may become available for other users</li>
+            </ul>
+        </div>
+
+        <h2 data-i18n="howTitle">How to Request Data Deletion</h2>
+
+        <div class="step-box">
+            <div class="step-number">1</div>
+            <div><span data-i18n="step1"></span></div>
+        </div>
+        <div class="step-box">
+            <div class="step-number">2</div>
+            <div>
+                <span data-i18n="step2"></span>
+                <ul style="margin-top:10px;">
+                    <li data-i18n="s2a">Your nickname/display name in the game (if you remember it)</li>
+                    <li data-i18n="s2b">Approximate date when you created your profile</li>
+                    <li data-i18n="s2c">Any other information that can help us identify your account</li>
+                </ul>
+            </div>
+        </div>
+        <div class="step-box">
+            <div class="step-number">3</div>
+            <div><span data-i18n="step3"></span></div>
+        </div>
+
+        <div style="text-align:center; margin:36px 0;">
+            <a href="mailto:aykuterd@gmail.com?subject=Block%20Unite%20-%20Data%20Deletion%20Request&body=Hello%2C%0A%0AI%20would%20like%20to%20request%20the%20deletion%20of%20my%20data%20from%20Block%20Unite.%0A%0AMy%20Nickname%3A%20%5BYour%20nickname%20here%5D%0A%0AThank%20you." class="deletion-btn" data-i18n="deleteBtn">📧 Request Data Deletion</a>
+        </div>
+
+        <h2 data-i18n="altTitle">Alternative Contact Method</h2>
+        <p data-i18n="altDesc">If you prefer, you can also email us directly at: <a href="mailto:aykuterd@gmail.com">aykuterd@gmail.com</a></p>
+        <p data-i18n="altSubject">Please use the subject line: <strong>"Block Unite - Data Deletion Request"</strong></p>
+
+        <h2 data-i18n="responseTitle">Response Time</h2>
+        <p data-i18n="responseDesc">We typically respond to data deletion requests within <strong>7 business days</strong>. The actual deletion process will be completed within <strong>30 days</strong> as required by GDPR and CCPA regulations.</p>
+        <p data-i18n="responseConfirm">You will receive a confirmation email once your data has been permanently deleted from our systems.</p>
+
+        <h2 data-i18n="questionsTitle">Questions?</h2>
+        <p data-i18n="questionsDesc">If you have any questions about the data deletion process or our data practices, please review our <a href="privacy.html">Privacy Policy</a> or contact us at <a href="mailto:aykuterd@gmail.com">aykuterd@gmail.com</a>.</p>
+
+        <div class="footer-nav">
+            <a href="index.html" data-i18n="navHome">← Home</a>
+            <a href="support.html" data-i18n="navSupport">Support</a>
+            <a href="privacy.html" data-i18n="navPrivacy">Privacy Policy</a>
+            <a href="terms.html" data-i18n="navTerms">Terms of Use</a>
+        </div>
+    </div>
+</div>
+
+<script>
+const t = {
+    en: {
+        title: "Data Deletion Request",
+        intro: "We respect your privacy and your right to control your personal data. If you would like to delete your data from Block Unite, please follow the instructions below.",
+        infoTitle: "📋 What Data Will Be Deleted?",
+        infoDesc: "When you request data deletion, we will permanently remove:",
+        id1: "Your nickname/display name", id2: "Your game scores and leaderboard entries",
+        id3: "Your achievement progress", id4: "Your user ID from our database",
+        id5: "Any other personal data associated with your account",
+        warnTitle: "⚠️ Important Notice",
+        warnDesc: "<strong>This action is permanent and cannot be undone.</strong> Once your data is deleted:",
+        wd1: "Your leaderboard ranking will be removed",
+        wd2: "All achievements and progress will be lost",
+        wd3: "You will need to create a new profile to play again",
+        wd4: "Your nickname may become available for other users",
+        howTitle: "How to Request Data Deletion",
+        step1: "<strong>Click the button below</strong> to send us a data deletion request via email",
+        step2: "<strong>Include the following information</strong> in your email:",
+        s2a: "Your nickname/display name in the game (if you remember it)",
+        s2b: "Approximate date when you created your profile",
+        s2c: "Any other information that can help us identify your account",
+        step3: "<strong>We will process your request</strong> within 30 days and send you a confirmation email",
+        deleteBtn: "📧 Request Data Deletion",
+        altTitle: "Alternative Contact Method",
+        altDesc: "If you prefer, you can also email us directly at: <a href=\"mailto:aykuterd@gmail.com\">aykuterd@gmail.com</a>",
+        altSubject: "Please use the subject line: <strong>\"Block Unite - Data Deletion Request\"</strong>",
+        responseTitle: "Response Time",
+        responseDesc: "We typically respond to data deletion requests within <strong>7 business days</strong>. The actual deletion process will be completed within <strong>30 days</strong> as required by GDPR and CCPA regulations.",
+        responseConfirm: "You will receive a confirmation email once your data has been permanently deleted from our systems.",
+        questionsTitle: "Questions?",
+        questionsDesc: "If you have any questions about the data deletion process or our data practices, please review our <a href=\"privacy.html\">Privacy Policy</a> or contact us at <a href=\"mailto:aykuterd@gmail.com\">aykuterd@gmail.com</a>.",
+        navHome: "← Home", navSupport: "Support", navPrivacy: "Privacy Policy", navTerms: "Terms of Use"
+    },
+    tr: {
+        title: "Veri Silme Talebi",
+        intro: "Gizliliğinize ve kişisel verileriniz üzerindeki kontrolünüze saygı duyuyoruz. Block Unite'tan verilerinizi silmek isterseniz lütfen aşağıdaki talimatları izleyin.",
+        infoTitle: "📋 Hangi Veriler Silinecek?",
+        infoDesc: "Veri silme talebinde bulunduğunuzda aşağıdakileri kalıcı olarak sileceğiz:",
+        id1: "Takma adınız/görünen adınız", id2: "Oyun puanlarınız ve sıralama tablosu girişleriniz",
+        id3: "Başarım ilerlemeniz", id4: "Veritabanımızdaki kullanıcı kimliğiniz",
+        id5: "Hesabınızla ilişkili diğer kişisel veriler",
+        warnTitle: "⚠️ Önemli Uyarı",
+        warnDesc: "<strong>Bu işlem kalıcıdır ve geri alınamaz.</strong> Verileriniz silindikten sonra:",
+        wd1: "Sıralama tablosu sıralamanız kaldırılacak",
+        wd2: "Tüm başarımlar ve ilerleme kaybedilecek",
+        wd3: "Tekrar oynamak için yeni bir profil oluşturmanız gerekecek",
+        wd4: "Takma adınız diğer kullanıcılar için kullanılabilir hale gelebilir",
+        howTitle: "Veri Silme Nasıl Talep Edilir?",
+        step1: "E-posta yoluyla veri silme talebini göndermek için <strong>aşağıdaki düğmeye tıklayın</strong>",
+        step2: "E-postanıza <strong>aşağıdaki bilgileri ekleyin</strong>:",
+        s2a: "Oyundaki takma adınız/görünen adınız (hatırlıyorsanız)",
+        s2b: "Profilinizi oluşturduğunuz yaklaşık tarih",
+        s2c: "Hesabınızı tanımlamamıza yardımcı olabilecek diğer bilgiler",
+        step3: "<strong>Talebinizi 30 gün içinde işleyeceğiz</strong> ve size onay e-postası göndereceğiz",
+        deleteBtn: "📧 Veri Silme Talebinde Bulun",
+        altTitle: "Alternatif İletişim Yöntemi",
+        altDesc: "İsterseniz doğrudan şu adrese e-posta gönderebilirsiniz: <a href=\"mailto:aykuterd@gmail.com\">aykuterd@gmail.com</a>",
+        altSubject: "Lütfen konu satırı olarak kullanın: <strong>\"Block Unite - Veri Silme Talebi\"</strong>",
+        responseTitle: "Yanıt Süresi",
+        responseDesc: "Veri silme taleplerine genellikle <strong>7 iş günü</strong> içinde yanıt veriyoruz. GDPR ve CCPA yönetmeliklerinin gerektirdiği şekilde gerçek silme işlemi <strong>30 gün</strong> içinde tamamlanacaktır.",
+        responseConfirm: "Verileriniz sistemlerimizden kalıcı olarak silindiğinde bir onay e-postası alacaksınız.",
+        questionsTitle: "Sorularınız mı Var?",
+        questionsDesc: "Veri silme süreci veya veri uygulamalarımız hakkında sorularınız varsa lütfen <a href=\"privacy.html\">Gizlilik Politikamızı</a> inceleyin veya <a href=\"mailto:aykuterd@gmail.com\">aykuterd@gmail.com</a> adresinden bize ulaşın.",
+        navHome: "← Ana Sayfa", navSupport: "Destek", navPrivacy: "Gizlilik Politikası", navTerms: "Kullanım Koşulları"
+    }
+};
+
+let lang = localStorage.getItem('bu-lang') || 'en';
+function setLanguage(l) {
+    lang = l;
+    localStorage.setItem('bu-lang', l);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (t[l][k] !== undefined) el.innerHTML = t[l][k];
+    });
+    document.getElementById('btn-en').classList.toggle('active', l === 'en');
+    document.getElementById('btn-tr').classList.toggle('active', l === 'tr');
+    document.documentElement.lang = l;
+}
+setLanguage(lang);
+</script>
 </body>
 </html>

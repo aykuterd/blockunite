@@ -1,231 +1,676 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Block Unite - Merge puzzle game combining 2048 and block mechanics">
+    <meta name="description" content="Block Unite - Addictive merge puzzle game. Place and merge numbered blocks to reach 2048. Available on iOS and Android.">
+    <meta property="og:title" content="Block Unite - Merge Puzzle Game">
+    <meta property="og:description" content="Place and merge colorful numbered blocks. Make strategic moves to reach 2048 and beyond!">
+    <meta property="og:image" content="images/icon.png">
     <title>Block Unite - Merge Puzzle Game</title>
+    <link rel="icon" href="images/icon.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --purple: #7C3AED;
+            --purple-light: #9F67FF;
+            --bg-dark: #1A1625;
+            --bg-mid: #2D2640;
+            --text-muted: #9B94AA;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: white;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1A1625 0%, #2D2640 100%);
-            min-height: 100vh;
         }
 
-        .container {
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(26,22,37,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 12px 24px;
+        }
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1.15em;
+            background: linear-gradient(135deg, #fff 0%, #9F67FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .lang-toggle {
+            display: flex;
+            gap: 4px;
+            background: rgba(255,255,255,0.08);
+            padding: 4px;
+            border-radius: 10px;
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 6px 16px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+        .lang-btn.active { background: var(--purple); color: white; }
 
-        header {
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 60px 20px;
-            color: white;
+            padding: 110px 20px 80px;
+            background: linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-mid) 100%);
+            position: relative;
+            overflow: hidden;
         }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 680px; }
 
-        .logo {
-            font-size: 3em;
-            font-weight: bold;
-            background: linear-gradient(135deg, #7C3AED, #9F67FF);
+        .game-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 28px;
+            margin-bottom: 28px;
+            box-shadow: 0 24px 80px rgba(124,58,237,0.45);
+        }
+        .game-title {
+            font-size: 3.8em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #9F67FF 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
+            letter-spacing: -1px;
         }
-
         .tagline {
-            font-size: 1.5em;
-            color: #9B94AA;
-            margin-bottom: 30px;
+            font-size: 1.35em;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+        .description {
+            font-size: 1.05em;
+            color: rgba(255,255,255,0.65);
+            max-width: 480px;
+            margin: 0 auto 44px;
         }
 
-        .download-badge {
-            display: inline-block;
-            background: white;
-            padding: 12px 30px;
-            border-radius: 10px;
-            color: #7C3AED;
+        /* Store badges */
+        .store-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 26px;
+            border-radius: 16px;
             text-decoration: none;
-            font-weight: bold;
-            margin: 10px;
-            transition: transform 0.2s;
-        }
-
-        .download-badge:hover {
-            transform: translateY(-2px);
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
+            transition: all 0.3s;
+            min-width: 185px;
+            border: 1px solid rgba(255,255,255,0.15);
         }
+        .store-badge.apple { background: #111; }
+        .store-badge.google { background: #01875f; }
+        .store-badge:hover { transform: translateY(-4px); box-shadow: 0 16px 50px rgba(0,0,0,0.5); }
+        .badge-icon svg { width: 30px; height: 30px; fill: white; display: block; }
+        .badge-text { text-align: left; }
+        .badge-line1 { display: block; font-size: 0.7em; opacity: 0.82; letter-spacing: 0.3px; }
+        .badge-line2 { display: block; font-size: 1.2em; font-weight: 700; }
 
-        .feature-card h3 {
-            color: #9F67FF;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-
-        .feature-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-
-        footer {
+        /* ── Sections common ── */
+        section { padding: 90px 20px; }
+        .container { max-width: 1150px; margin: 0 auto; }
+        .section-title {
             text-align: center;
-            padding: 40px 20px;
-            color: #9B94AA;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 60px;
+            font-size: 2.1em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff 0%, #9F67FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            font-size: 1.05em;
         }
 
-        footer a {
-            color: #9F67FF;
-            text-decoration: none;
-            margin: 0 15px;
+        /* ── Screenshots ── */
+        .screenshots { background: linear-gradient(180deg, var(--bg-mid) 0%, var(--bg-dark) 100%); }
+        .screenshot-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px 10px 30px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--purple) transparent;
+            justify-content: center;
+            flex-wrap: wrap;
         }
-
-        footer a:hover {
-            text-decoration: underline;
+        .screenshot-scroll::-webkit-scrollbar { height: 5px; }
+        .screenshot-scroll::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+        .phone-mockup { flex-shrink: 0; width: 175px; scroll-snap-align: start; text-align: center; }
+        .phone-frame {
+            width: 175px;
+            height: 355px;
+            background: #0e0e0e;
+            border-radius: 30px;
+            border: 3px solid #2a2a2a;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
         }
+        .phone-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+        .phone-label { margin-top: 12px; font-size: 0.82em; color: var(--text-muted); }
 
-        .section {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 40px;
+        /* ── Features ── */
+        .features { background: var(--bg-dark); }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
             border-radius: 20px;
-            margin: 30px 0;
-            color: white;
+            padding: 28px;
+            transition: all 0.3s;
         }
-
-        .section h2 {
-            color: #9F67FF;
-            margin-bottom: 20px;
+        .feature-card:hover {
+            background: rgba(124,58,237,0.1);
+            border-color: rgba(124,58,237,0.4);
+            transform: translateY(-4px);
         }
+        .feature-icon { font-size: 2.4em; margin-bottom: 14px; }
+        .feature-card h3 { font-size: 1.15em; font-weight: 600; color: var(--purple-light); margin-bottom: 8px; }
+        .feature-card p { color: rgba(255,255,255,0.65); font-size: 0.93em; }
 
+        /* ── How to Play ── */
+        .how-to-play { background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-mid) 100%); }
+        .steps-container { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 16px;
+            padding: 22px;
+            transition: border-color 0.3s;
+        }
+        .step:hover { border-color: rgba(124,58,237,0.35); }
+        .step-number {
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+        .step-content h3 { font-size: 1.08em; font-weight: 600; margin-bottom: 5px; color: white; }
+        .step-content p { color: rgba(255,255,255,0.65); font-size: 0.93em; }
+
+        /* ── Special Abilities ── */
+        .abilities { background: var(--bg-mid); }
+        .abilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 20px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .ability-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 18px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .ability-card:hover { transform: translateY(-4px); border-color: rgba(124,58,237,0.4); }
+        .ability-icon { font-size: 2.8em; margin-bottom: 12px; }
+        .ability-name { font-size: 0.95em; font-weight: 700; color: var(--purple-light); letter-spacing: 1.5px; margin-bottom: 8px; }
+        .ability-desc { font-size: 0.88em; color: rgba(255,255,255,0.65); }
+
+        /* ── Leaderboard ── */
+        .leaderboard-section { background: var(--bg-dark); }
+        .leaderboard-modes {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .mode-badge {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 22px 32px;
+            text-align: center;
+            min-width: 160px;
+            transition: all 0.3s;
+        }
+        .mode-badge:hover { background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.4); transform: translateY(-3px); }
+        .mode-badge-icon { font-size: 2em; margin-bottom: 10px; }
+        .mode-badge-name { font-weight: 700; color: var(--purple-light); margin-bottom: 6px; font-size: 0.95em; }
+        .mode-badge-desc { font-size: 0.82em; color: var(--text-muted); }
+
+        /* ── Footer ── */
+        footer {
+            background: rgba(0,0,0,0.35);
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding: 50px 20px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 22px; }
+        .footer-links a { color: var(--purple-light); text-decoration: none; transition: opacity 0.2s; font-size: 0.95em; }
+        .footer-links a:hover { opacity: 0.75; text-decoration: underline; }
+
+        /* ── Responsive ── */
         @media (max-width: 768px) {
-            .logo {
-                font-size: 2em;
-            }
-
-            .tagline {
-                font-size: 1.2em;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
+            .game-title { font-size: 2.6em; }
+            .store-buttons { flex-direction: column; align-items: center; }
+            .screenshot-scroll { justify-content: flex-start; flex-wrap: nowrap; padding: 10px 20px 30px; }
+            section { padding: 64px 16px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">🎮 Block Unite</div>
-            <p class="tagline">Merge Puzzle Adventure</p>
-            <p style="color: #9B94AA; max-width: 600px; margin: 20px auto;">
-                Combine the addictive gameplay of 2048 with strategic block placement.
-                Merge, match, and master the ultimate puzzle challenge!
-            </p>
-            <div style="margin-top: 30px;">
-                <a href="#" class="download-badge">📱 Download on App Store</a>
-                <a href="#" class="download-badge">🤖 Get it on Google Play</a>
-            </div>
-        </header>
 
-        <div class="features">
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <div class="nav-logo">🎮 Block Unite</div>
+        <div class="lang-toggle">
+            <button onclick="setLanguage('en')" id="btn-en" class="lang-btn active">EN</button>
+            <button onclick="setLanguage('tr')" id="btn-tr" class="lang-btn">TR</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <img src="images/icon.png" class="game-icon" alt="Block Unite">
+        <h1 class="game-title">Block Unite</h1>
+        <p class="tagline" data-i18n="tagline">Merge Puzzle Adventure</p>
+        <p class="description" data-i18n="description">
+            Place and merge colorful numbered blocks. Make strategic moves to reach 2048 and beyond!
+        </p>
+        <div class="store-buttons">
+            <a href="https://apps.apple.com/tr/app/block-unite/id6757486449" class="store-badge apple" target="_blank" rel="noopener">
+                <div class="badge-icon">
+                    <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                </div>
+                <div class="badge-text">
+                    <span class="badge-line1" data-i18n="appLine1">Download on the</span>
+                    <span class="badge-line2">App Store</span>
+                </div>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.aykuterdogdu.blokla" class="store-badge google" target="_blank" rel="noopener">
+                <div class="badge-icon">
+                    <svg viewBox="0 0 24 24"><path d="M3.18 23.76c.33.18.7.24 1.08.18L14.83 12 11 8.17 3.18 23.76zm17.69-10.35-3.03-1.73-3.51 3.51 3.51 3.52 3.06-1.75c.87-.5.87-1.75-.03-2.55zM4.04.46C3.62.2 3.13.16 2.7.4L13.83 12 4.04.46zm7.13 10.69L2.7.4c-.43.24-.7.7-.7 1.24v20.72c0 .54.27 1 .7 1.24l9.47-12.45z"/></svg>
+                </div>
+                <div class="badge-text">
+                    <span class="badge-line1" data-i18n="googleLine1">Get it on</span>
+                    <span class="badge-line2">Google Play</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Screenshots -->
+<section class="screenshots">
+    <div class="container">
+        <h2 class="section-title" data-i18n="ssTitle">See the Game in Action</h2>
+        <p class="section-subtitle" data-i18n="ssSubtitle">Experience the addictive block puzzle gameplay</p>
+        <div class="screenshot-scroll">
+            <div class="phone-mockup">
+                <div class="phone-frame"><img src="images/ss1.png" alt="Main Menu"></div>
+                <p class="phone-label" data-i18n="ss1">Main Menu</p>
+            </div>
+            <div class="phone-mockup">
+                <div class="phone-frame"><img src="images/ss2.png" alt="Gameplay"></div>
+                <p class="phone-label" data-i18n="ss2">Gameplay</p>
+            </div>
+            <div class="phone-mockup">
+                <div class="phone-frame"><img src="images/ss3.png" alt="Achievements"></div>
+                <p class="phone-label" data-i18n="ss3">Achievements</p>
+            </div>
+            <div class="phone-mockup">
+                <div class="phone-frame"><img src="images/ss4.png" alt="Leaderboard"></div>
+                <p class="phone-label" data-i18n="ss4">Leaderboard</p>
+            </div>
+            <div class="phone-mockup">
+                <div class="phone-frame"><img src="images/ss5.png" alt="Daily Bonus"></div>
+                <p class="phone-label" data-i18n="ss5">Daily Bonus</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="features">
+    <div class="container">
+        <h2 class="section-title" data-i18n="featTitle">Features</h2>
+        <p class="section-subtitle" data-i18n="featSubtitle">Everything you need for the ultimate puzzle experience</p>
+        <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🧩</div>
-                <h3>Strategic Gameplay</h3>
-                <p>Drag, drop, and merge numbered blocks. Plan your moves carefully to reach 2048 and beyond!</p>
+                <h3 data-i18n="f1t">Strategic Gameplay</h3>
+                <p data-i18n="f1d">Place numbered blocks on the grid and merge them strategically. Every placement matters — plan ahead to chain merges and maximize your score!</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-icon">🏆</div>
-                <h3>Global Leaderboard</h3>
-                <p>Compete with players worldwide. Climb the ranks and prove you're the ultimate Block Unite champion!</p>
+                <h3 data-i18n="f2t">Global Leaderboard</h3>
+                <p data-i18n="f2d">Compete with players worldwide across three categories: Top Score, Most Blocks Merged, and Most Active Player. Climb the ranks and become the champion!</p>
             </div>
-
             <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3>Daily Challenges</h3>
-                <p>Complete daily missions, unlock achievements, and earn rewards. New challenges every day!</p>
+                <div class="feature-icon">🎁</div>
+                <h3 data-i18n="f3t">Daily Bonus</h3>
+                <p data-i18n="f3d">Log in every day to maintain your 7-day streak. Rewards grow each day — from 5 gems on Day 1 up to a special gift on Day 7. Don't break the streak!</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-icon">💎</div>
-                <h3>Collect Gems</h3>
-                <p>Earn gems as you play and use them to continue challenging games. Track your progress!</p>
+                <h3 data-i18n="f4t">Collect Gems</h3>
+                <p data-i18n="f4d">Earn gems through achievements and daily bonuses. Use them to activate special abilities like Undo, Trash, Smash, and Mix when you're in a tough spot!</p>
             </div>
-
             <div class="feature-card">
-                <div class="feature-icon">🎨</div>
-                <h3>Beautiful Design</h3>
-                <p>Colorful blocks with smooth animations. A relaxing and satisfying puzzle experience!</p>
+                <div class="feature-icon">🥇</div>
+                <h3 data-i18n="f5t">31 Achievements</h3>
+                <p data-i18n="f5d">Unlock 31 unique achievements grouped into milestone categories. Each achievement awards bonus gems. Track your progress and prove your mastery!</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-icon">📴</div>
-                <h3>Play Offline</h3>
-                <p>No internet required for gameplay. Play anytime, anywhere at your own pace!</p>
+                <h3 data-i18n="f6t">Play Offline</h3>
+                <p data-i18n="f6d">No internet required for gameplay. Take Block Unite anywhere — on a plane, subway, or wherever you go. Scores sync to the cloud when you're back online.</p>
             </div>
         </div>
-
-        <div class="section">
-            <h2>How to Play</h2>
-            <ol style="line-height: 2; padding-left: 20px;">
-                <li>Drag numbered blocks from the selection area onto the 8x8 grid</li>
-                <li>Match three or more identical blocks together to merge them</li>
-                <li>Create higher-value blocks and reach your goal</li>
-                <li>Plan strategically - every placement counts!</li>
-                <li>Clear space by creating smart merges</li>
-            </ol>
-        </div>
-
-        <div class="section">
-            <h2>Why Block Unite?</h2>
-            <p style="margin-bottom: 15px;">
-                Whether you're a fan of 2048, Tetris, or classic block puzzle games,
-                Block Unite offers a fresh and engaging experience that's easy to learn but hard to master.
-            </p>
-            <p>
-                ✨ Free to download and play<br>
-                ✨ No time pressure - relax and enjoy<br>
-                ✨ Perfect for puzzle lovers of all ages<br>
-                ✨ Regular updates with new features
-            </p>
-        </div>
-
-        <footer>
-            <p style="margin-bottom: 20px;">
-                <a href="support.html">Support</a> |
-                <a href="privacy.html">Privacy Policy</a> |
-                <a href="terms.html">Terms of Use</a>
-            </p>
-            <p>&copy; 2025 Block Unite. All rights reserved.</p>
-            <p style="margin-top: 10px; font-size: 0.9em;">
-                Contact: <a href="mailto:aykuterd@gmail.com">aykuterd@gmail.com</a>
-            </p>
-        </footer>
     </div>
+</section>
+
+<!-- How to Play -->
+<section class="how-to-play">
+    <div class="container">
+        <h2 class="section-title" data-i18n="htpTitle">How to Play</h2>
+        <p class="section-subtitle" data-i18n="htpSubtitle">Master the block merging mechanics in a few simple steps</p>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 data-i18n="s1t">Drop Your Block</h3>
+                    <p data-i18n="s1d">The upcoming block is displayed at the bottom-left as <strong>NEXT</strong>. Tap a column on the grid to drop the block into that column. Blocks fall to the lowest empty row in that column — just like Tetris!</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 data-i18n="s2t">Merge Identical Blocks</h3>
+                    <p data-i18n="s2d">When two or more blocks with the same number touch each other (horizontally or vertically), they instantly merge into a single block with double the value. <strong>2+2=4 → 4+4=8 → 8+8=16 → ... → 1024+1024=2048</strong></p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 data-i18n="s3t">Chain Merges for Big Points</h3>
+                    <p data-i18n="s3d">A smart block placement can trigger a chain reaction! When blocks merge, the resulting block may match its new neighbors — triggering another merge automatically. Plan these chain reactions to multiply your points and clear board space!</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3 data-i18n="s4t">Manage Your Board</h3>
+                    <p data-i18n="s4d">Keep the grid from filling up by constantly creating merges. Spreading low-value blocks randomly will clog the board. Group similar numbers together to set up powerful chain merges and always keep rows open for new blocks.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3 data-i18n="s5t">Reach 2048 and Beyond!</h3>
+                    <p data-i18n="s5d">Your ultimate goal is to merge blocks all the way up to <strong>2048</strong> — but don't stop there! The game continues until the grid is completely full with no adjacent matching blocks remaining. Push for the highest score possible!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Special Abilities -->
+<section class="abilities">
+    <div class="container">
+        <h2 class="section-title" data-i18n="ablTitle">Special Abilities</h2>
+        <p class="section-subtitle" data-i18n="ablSubtitle">Powerful tools to turn the tide when you're in trouble — spend gems wisely!</p>
+        <div class="abilities-grid">
+            <div class="ability-card">
+                <div class="ability-icon">↩️</div>
+                <div class="ability-name" data-i18n="undoName">UNDO</div>
+                <p class="ability-desc" data-i18n="undoDesc">Regret your last move? Undo reverses your most recent block placement, giving you another chance to find a better spot on the board.</p>
+            </div>
+            <div class="ability-card">
+                <div class="ability-icon">🗑️</div>
+                <div class="ability-name" data-i18n="trashName">TRASH</div>
+                <p class="ability-desc" data-i18n="trashDesc">Discard the current block from your queue entirely. Perfect for getting rid of an inconvenient block and moving on to the next one.</p>
+            </div>
+            <div class="ability-card">
+                <div class="ability-icon">💥</div>
+                <div class="ability-name" data-i18n="smashName">SMASH</div>
+                <p class="ability-desc" data-i18n="smashDesc">Tap any block on the grid to destroy it and free up that space. Use it strategically to remove a block that's blocking a crucial merge opportunity.</p>
+            </div>
+            <div class="ability-card">
+                <div class="ability-icon">🔀</div>
+                <div class="ability-name" data-i18n="mixName">MIX</div>
+                <p class="ability-desc" data-i18n="mixDesc">Shuffle the upcoming blocks in your queue to randomize their order. Use this when none of the upcoming blocks seem helpful for your current board situation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Leaderboard -->
+<section class="leaderboard-section">
+    <div class="container">
+        <h2 class="section-title" data-i18n="lbTitle">Compete Globally</h2>
+        <p class="section-subtitle" data-i18n="lbSubtitle">Three leaderboard categories so there's always a way to prove you're the best</p>
+        <div class="leaderboard-modes">
+            <div class="mode-badge">
+                <div class="mode-badge-icon">🏆</div>
+                <div class="mode-badge-name" data-i18n="lb1n">Top Score</div>
+                <p class="mode-badge-desc" data-i18n="lb1d">Highest single-game score</p>
+            </div>
+            <div class="mode-badge">
+                <div class="mode-badge-icon">🟦</div>
+                <div class="mode-badge-name" data-i18n="lb2n">Most Blocks</div>
+                <p class="mode-badge-desc" data-i18n="lb2d">Total blocks merged across all games</p>
+            </div>
+            <div class="mode-badge">
+                <div class="mode-badge-icon">⚡</div>
+                <div class="mode-badge-name" data-i18n="lb3n">Most Active</div>
+                <p class="mode-badge-desc" data-i18n="lb3d">Most total games played</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-links">
+        <a href="support.html" data-i18n="fSupport">Support</a>
+        <a href="privacy.html" data-i18n="fPrivacy">Privacy Policy</a>
+        <a href="terms.html" data-i18n="fTerms">Terms of Use</a>
+        <a href="data-deletion.html" data-i18n="fData">Data Deletion</a>
+    </div>
+    <p>&copy; 2026 Block Unite. <span data-i18n="fRights">All rights reserved.</span></p>
+    <p style="margin-top:8px; font-size:0.9em;">
+        <span data-i18n="fContact">Contact:</span>
+        <a href="mailto:aykuterd@gmail.com" style="color:#9F67FF;">aykuterd@gmail.com</a>
+    </p>
+    <p style="margin-top:8px; font-size:0.82em; color:#555;">Developer: Aykut Erdoğdu</p>
+</footer>
+
+<script>
+const t = {
+    en: {
+        tagline: "Merge Puzzle Adventure",
+        description: "Place and merge colorful numbered blocks. Make strategic moves to reach 2048 and beyond!",
+        appLine1: "Download on the",
+        googleLine1: "Get it on",
+        ssTitle: "See the Game in Action",
+        ssSubtitle: "Experience the addictive block puzzle gameplay",
+        ss1: "Main Menu", ss2: "Gameplay", ss3: "Achievements", ss4: "Leaderboard", ss5: "Daily Bonus",
+        featTitle: "Features",
+        featSubtitle: "Everything you need for the ultimate puzzle experience",
+        f1t: "Strategic Gameplay",
+        f1d: "Place numbered blocks on the grid and merge them strategically. Every placement matters — plan ahead to chain merges and maximize your score!",
+        f2t: "Global Leaderboard",
+        f2d: "Compete with players worldwide across three categories: Top Score, Most Blocks Merged, and Most Active Player. Climb the ranks and become the champion!",
+        f3t: "Daily Bonus",
+        f3d: "Log in every day to maintain your 7-day streak. Rewards grow each day — from 5 gems on Day 1 up to a special gift on Day 7. Don't break the streak!",
+        f4t: "Collect Gems",
+        f4d: "Earn gems through achievements and daily bonuses. Use them to activate special abilities like Undo, Trash, Smash, and Mix when you're in a tough spot!",
+        f5t: "31 Achievements",
+        f5d: "Unlock 31 unique achievements grouped into milestone categories. Each achievement awards bonus gems. Track your progress and prove your mastery!",
+        f6t: "Play Offline",
+        f6d: "No internet required for gameplay. Take Block Unite anywhere — on a plane, subway, or wherever you go. Scores sync to the cloud when you're back online.",
+        htpTitle: "How to Play",
+        htpSubtitle: "Master the block merging mechanics in a few simple steps",
+        s1t: "Drop Your Block",
+        s1d: "The upcoming block is displayed at the bottom-left as <strong>NEXT</strong>. Tap a column on the grid to drop the block into that column. Blocks fall to the lowest empty row in that column — just like Tetris!",
+        s2t: "Merge Identical Blocks",
+        s2d: "When two or more blocks with the same number touch each other (horizontally or vertically), they instantly merge into a single block with double the value. <strong>2+2=4 → 4+4=8 → 8+8=16 → ... → 1024+1024=2048</strong>",
+        s3t: "Chain Merges for Big Points",
+        s3d: "A smart block placement can trigger a chain reaction! When blocks merge, the resulting block may match its new neighbors — triggering another merge automatically. Plan these chain reactions to multiply your points and clear board space!",
+        s4t: "Manage Your Board",
+        s4d: "Keep the grid from filling up by constantly creating merges. Spreading low-value blocks randomly will clog the board. Group similar numbers together to set up powerful chain merges and always keep rows open for new blocks.",
+        s5t: "Reach 2048 and Beyond!",
+        s5d: "Your ultimate goal is to merge blocks all the way up to <strong>2048</strong> — but don't stop there! The game continues until the grid is completely full with no adjacent matching blocks remaining. Push for the highest score possible!",
+        ablTitle: "Special Abilities",
+        ablSubtitle: "Powerful tools to turn the tide when you're in trouble — spend gems wisely!",
+        undoName: "UNDO",
+        undoDesc: "Regret your last move? Undo reverses your most recent block placement, giving you another chance to find a better spot on the board.",
+        trashName: "TRASH",
+        trashDesc: "Discard the current block from your queue entirely. Perfect for getting rid of an inconvenient block and moving on to the next one.",
+        smashName: "SMASH",
+        smashDesc: "Tap any block on the grid to destroy it and free up that space. Use it strategically to remove a block that's blocking a crucial merge opportunity.",
+        mixName: "MIX",
+        mixDesc: "Shuffle the upcoming blocks in your queue to randomize their order. Use this when none of the upcoming blocks seem helpful for your current board situation.",
+        lbTitle: "Compete Globally",
+        lbSubtitle: "Three leaderboard categories so there's always a way to prove you're the best",
+        lb1n: "Top Score", lb1d: "Highest single-game score",
+        lb2n: "Most Blocks", lb2d: "Total blocks merged across all games",
+        lb3n: "Most Active", lb3d: "Most total games played",
+        fSupport: "Support", fPrivacy: "Privacy Policy", fTerms: "Terms of Use", fData: "Data Deletion",
+        fRights: "All rights reserved.", fContact: "Contact:"
+    },
+    tr: {
+        tagline: "Birleştirme Bulmaca Macerası",
+        description: "Renkli numaralı blokları yerleştir ve birleştir. 2048'e ulaşmak için stratejik hamleler yap!",
+        appLine1: "App Store'dan İndir",
+        googleLine1: "Google Play'den İndir",
+        ssTitle: "Oyunu Keşfet",
+        ssSubtitle: "Bağımlılık yapan blok bulmaca deneyimini görün",
+        ss1: "Ana Menü", ss2: "Oynanış", ss3: "Başarımlar", ss4: "Sıralama Tablosu", ss5: "Günlük Bonus",
+        featTitle: "Özellikler",
+        featSubtitle: "Mükemmel bulmaca deneyimi için ihtiyacınız olan her şey",
+        f1t: "Stratejik Oynanış",
+        f1d: "Numaralı blokları ızgaraya yerleştir ve stratejik şekilde birleştir. Her hamle önemlidir — zincir birleşmeler planlayarak puanını maksimuma çıkar!",
+        f2t: "Global Sıralama Tablosu",
+        f2d: "Üç kategoride dünya genelindeki oyuncularla yarış: En Yüksek Skor, En Çok Birleştirilen Blok ve En Aktif Oyuncu. Sıralamada yükselerek şampiyon ol!",
+        f3t: "Günlük Bonus",
+        f3d: "Her gün giriş yaparak 7 günlük serinizi devam ettirin. Ödüller her gün artar — 1. Günde 5 elmasta başlayarak 7. Günde özel hediyeye kadar. Seriyi kırma!",
+        f4t: "Elmas Topla",
+        f4d: "Başarımlar ve günlük bonuslarla elmas kazan. Zor durumda kaldığında Geri Al, Çöp, Ez ve Karıştır gibi özel yetenekleri etkinleştirmek için kullan!",
+        f5t: "31 Başarım",
+        f5d: "Kilometre taşı kategorilerine göre gruplandırılmış 31 benzersiz başarımı aç. Her başarım bonus elmas kazandırır. İlerlemeni takip et ve ustalığını kanıtla!",
+        f6t: "Çevrimdışı Oyna",
+        f6d: "Oyun için internet bağlantısı gerekmez. Block Unite'ı her yere götür — uçakta, metroda veya nerede olursan ol. Puanlar çevrimiçi olduğunda buluta senkronize edilir.",
+        htpTitle: "Nasıl Oynanır?",
+        htpSubtitle: "Birkaç basit adımda blok birleştirme mekaniklerinde ustalaş",
+        s1t: "Bloğunu Bırak",
+        s1d: "Sıradaki blok sol altta <strong>NEXT</strong> (Sıradaki) olarak gösterilir. Bloğu o sütuna bırakmak için ızgaradaki herhangi bir sütuna dokun. Bloklar tıpkı Tetris gibi o sütunun en alt boş satırına düşer!",
+        s2t: "Aynı Blokları Birleştir",
+        s2d: "Aynı sayıya sahip iki veya daha fazla blok birbirine değdiğinde (yatay veya dikey), anında tek bir blokta birleşirler ve değerleri iki katına çıkar. <strong>2+2=4 → 4+4=8 → 8+8=16 → ... → 1024+1024=2048</strong>",
+        s3t: "Büyük Puanlar için Zincir Birleşmeler Yap",
+        s3d: "Akıllıca bir yerleştirme zincir reaksiyon tetikleyebilir! Bloklar birleştiğinde, oluşan blok yeni komşularıyla eşleşebilir — başka bir birleşmeyi otomatik olarak tetikler. Puanlarını çarpmak ve alan açmak için bu zincir reaksiyonları planla!",
+        s4t: "Tahtanı Yönet",
+        s4d: "Sürekli birleşmeler yaparak ızgaranın dolmasını önle. Düşük değerli blokları rastgele yaymak tahtayı tıkar. Güçlü zincir birleşmeler kurmak için benzer sayıları bir araya getir ve yeni bloklar için sütunları açık tut.",
+        s5t: "2048'e ve Ötesine Ulaş!",
+        s5d: "Nihai hedefin <strong>2048</strong>'e kadar blokları birleştirmek — ama orada durma! Bitişik eşleşen blok kalmadan ızgara tamamen dolana kadar oyun devam eder. Mümkün olan en yüksek skoru hedefle!",
+        ablTitle: "Özel Yetenekler",
+        ablSubtitle: "Sıkıştığında oyunu kurtaran güçlü araçlar — elmasları akıllıca harca!",
+        undoName: "GERİ AL",
+        undoDesc: "Son hamleden pişman mı oldun? Geri Al, en son blok yerleştirmeni geri çevirerek tahtada daha iyi bir yer bulman için sana yeni bir şans verir.",
+        trashName: "ÇÖP",
+        trashDesc: "Mevcut bloğu sırandan tamamen at. Elverişsiz bir bloktan kurtulmak ve bir sonrakine geçmek için mükemmeldir.",
+        smashName: "EZ",
+        smashDesc: "Tahtadaki herhangi bir bloğa dokunarak onu yok et ve o alanı boşalt. Kritik bir birleşme fırsatını engelleyen bir bloğu kaldırmak için stratejik olarak kullan.",
+        mixName: "KARIŞTIR",
+        mixDesc: "Sırandaki blokları rastgele bir sıraya karıştır. Yaklaşan blokların hiçbiri mevcut tahta durumuna yardımcı görünmediğinde bunu kullan.",
+        lbTitle: "Global Rekabet",
+        lbSubtitle: "Her zaman en iyi olduğunu kanıtlamanın bir yolunun olduğu üç sıralama kategorisi",
+        lb1n: "En Yüksek Skor", lb1d: "Tek oyundaki en yüksek skor",
+        lb2n: "En Çok Blok", lb2d: "Tüm oyunlarda birleştirilen toplam blok",
+        lb3n: "En Aktif", lb3d: "Oynanan toplam oyun sayısı",
+        fSupport: "Destek", fPrivacy: "Gizlilik Politikası", fTerms: "Kullanım Koşulları", fData: "Veri Silme",
+        fRights: "Tüm hakları saklıdır.", fContact: "İletişim:"
+    }
+};
+
+let lang = localStorage.getItem('bu-lang') || 'en';
+
+function setLanguage(l) {
+    lang = l;
+    localStorage.setItem('bu-lang', l);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (t[l][k] !== undefined) el.innerHTML = t[l][k];
+    });
+    document.getElementById('btn-en').classList.toggle('active', l === 'en');
+    document.getElementById('btn-tr').classList.toggle('active', l === 'tr');
+    document.documentElement.lang = l;
+}
+
+setLanguage(lang);
+</script>
 </body>
 </html>
